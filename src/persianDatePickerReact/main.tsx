@@ -10,6 +10,7 @@ export const DatePickerContainer = (props: DatePickerProps) => {
     <DatePicker
       value={props.value}
       onChange={props.onChange}
+      minDate={props.minDate}
       maxDate={props.maxDate}
       timePicker={props.timePicker}
       inputClassName={props.inputClassName}
@@ -27,6 +28,7 @@ export const MobileDatePickerContainer = (props: MobileDatePickerProps) => {
     <MobileDatePicker
       value={props.value}
       onChange={props.onChange}
+      minDate={props.minDate}
       maxDate={props.maxDate}
       timePicker={props.timePicker}
       inputClassName={props.inputClassName}
