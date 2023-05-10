@@ -40,10 +40,11 @@ $ yarn add persian-date-picker-reactjs
 
 ## Simple Usage
 
-- in Nextjs app
-
 ```jsx
-// in _app.tsx file added this
+// in _app.tsx file in Nextjs project added this
+import "persian-date-picker-reactjs/styles.css";
+
+// in App.jsx or App.tsx file in Nextjs project added this
 import "persian-date-picker-reactjs/styles.css";
 ```
 
@@ -70,12 +71,13 @@ const App = () => {
 };
 ```
 
-## Example
-
-- in Nextjs app
+## Advanced Examples
 
 ```jsx
-// in _app.tsx file added this
+// in _app.tsx file in Nextjs project added this
+import "persian-date-picker-reactjs/styles.css";
+
+// in App.jsx or App.tsx file in Nextjs project added this
 import "persian-date-picker-reactjs/styles.css";
 ```
 
