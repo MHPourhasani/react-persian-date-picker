@@ -6,8 +6,9 @@ const toTimeStamp = (dateInput: any, timePicker: boolean) => {
   if (timePicker) {
     date.setHour(date.hour + 1);
   } else {
-    date.minute = 0;
     date.hour = 0;
+    date.minute = 0;
+    date.second = 0;
   }
 
   return date.unix;
