@@ -8,6 +8,7 @@ export interface CalendarProps {
   onChange: (a: any) => any;
   minDate: any;
   maxDate: any;
+  timePicker: boolean;
   digits: string[];
   calendarClassName: string;
   dayClassName: string;

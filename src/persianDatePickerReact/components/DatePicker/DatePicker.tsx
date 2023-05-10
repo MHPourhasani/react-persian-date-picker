@@ -21,6 +21,7 @@ const DatePicker: React.FC<DatePickerProps> = ({
   onChange,
   minDate,
   maxDate,
+  timePicker = true,
   inputClassName,
   calendarClassName,
   dayClassName,
@@ -33,10 +34,15 @@ const DatePicker: React.FC<DatePickerProps> = ({
 
   const inputRef = useRef<any>();
 
-  const format = "YYYY/MM/DD HH:mm",
-    calendar = persian,
+  const calendar = persian,
     locale = persian_fa,
     digits = locale.digits;
+
+  let format = "YYYY/MM/DD HH:mm";
+
+  if (!timePicker) {
+    format = "YYYY/MM/DD";
+  }
 
   useEffect(() => {
     let date = value;
@@ -85,7 +91,7 @@ const DatePicker: React.FC<DatePickerProps> = ({
                 readOnly
                 type="text"
                 value={stringDate}
-                data-time-stamp={toTimeStamp(date)}
+                data-time-stamp={toTimeStamp(date, timePicker)}
               />
 
               <label
@@ -116,6 +122,7 @@ const DatePicker: React.FC<DatePickerProps> = ({
                 digits={digits}
                 minDate={minDate}
                 maxDate={maxDate}
+                timePicker={timePicker}
                 calendarClassName={calendarClassName}
                 dayClassName={dayClassName}
                 todayClassName={todayClassName}

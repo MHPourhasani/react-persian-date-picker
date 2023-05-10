@@ -11,6 +11,7 @@ export const DatePickerContainer = (props: DatePickerProps) => {
       value={props.value}
       onChange={props.onChange}
       maxDate={props.maxDate}
+      timePicker={props.timePicker}
       inputClassName={props.inputClassName}
       calendarClassName={props.calendarClassName}
       dayClassName={props.dayClassName}
@@ -26,6 +27,7 @@ export const MobileDatePickerContainer = (props: MobileDatePickerProps) => {
     value={props.value}
     onChange={props.onChange}
     maxDate={props.maxDate}
+    timePicker={props.timePicker}
     inputClassName={props.inputClassName}
     calendarClassName={props.calendarClassName}
     dayClassName={props.dayClassName}

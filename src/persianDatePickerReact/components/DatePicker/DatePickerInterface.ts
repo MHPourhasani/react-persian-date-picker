@@ -5,6 +5,7 @@ export interface DatePickerProps {
   onChange: any;
   minDate?: DateType;
   maxDate?: DateType;
+  timePicker?: boolean;
   inputClassName?: string;
   calendarClassName?: string;
   dayClassName?: string;

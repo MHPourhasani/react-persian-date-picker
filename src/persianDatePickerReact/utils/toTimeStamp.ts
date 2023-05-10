@@ -1,9 +1,14 @@
 import DateObject from "react-date-object";
 
-const toTimeStamp = (dateInput: any) => {
+const toTimeStamp = (dateInput: any, timePicker: boolean) => {
   const date = new DateObject(dateInput);
 
-  date.setHour(date.hour + 1);
+  if (timePicker) {
+    date.setHour(date.hour + 1);
+  } else {
+    date.minute = 0;
+    date.hour = 0;
+  }
 
   return date.unix;
 };

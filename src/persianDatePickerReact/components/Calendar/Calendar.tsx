@@ -26,6 +26,7 @@ const Calendar: React.FC<CalendarProps> = ({
   onChange,
   minDate,
   maxDate,
+  timePicker,
   digits,
   calendarClassName,
   dayClassName,
@@ -180,10 +181,12 @@ const Calendar: React.FC<CalendarProps> = ({
             )}
           </div>
 
-          <ClockIcon
-            onClick={() => setShowTimePicker(!showTimePicker)}
-            className="mt-2 cursor-pointer !fill-primary"
-          />
+          {timePicker && (
+            <ClockIcon
+              onClick={() => setShowTimePicker(!showTimePicker)}
+              className="mt-2 cursor-pointer !fill-primary"
+            />
+          )}
         </div>
 
         <div className="absolute top-0 flex w-full flex-col items-center justify-center">
