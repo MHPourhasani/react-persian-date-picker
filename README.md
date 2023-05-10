@@ -2,13 +2,14 @@
 
 ## Persian Date Picker
 
-Simple persian react date picker
+Simple persian react date picker with reactjs, typeScript and tailwindcss.
 
 ## Installation
 
 ```
-$ npm install --save persian-date-picker-reactjs
-$ yarn add persian-date-picker-reactjs
+npm install --save persian-date-picker-reactjs
+
+yarn add persian-date-picker-reactjs
 
 ```
 
@@ -16,8 +17,8 @@ $ yarn add persian-date-picker-reactjs
 
 ## Available props
 
-|     | Props                |  Types  | Default                                          | types     | Description                          |
-| :-: | :------------------- | :-----: | :----------------------------------------------- | :-------- | ------------------------------------ |
+|     | Props                |  Types  | Default                                          |   types   | Description                          |
+| :-: | :------------------- | :-----: | :----------------------------------------------- | :-------: | :----------------------------------- |
 |  1  | value                |  Date   |                                                  | mandatory |                                      |
 |  2  | onChange             |  Date   |                                                  | mandatory | To change Date picker input          |
 |  3  | minDate              |  Date   | --------                                         | optional  |                                      |
