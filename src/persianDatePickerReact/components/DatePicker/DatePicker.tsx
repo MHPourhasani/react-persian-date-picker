@@ -83,7 +83,9 @@ const DatePicker: React.FC<DatePickerProps> = ({
     <div className="hidden sm:fixed sm:top-16 sm:block">
       <Popover className="relative">
         <>
-          <Popover.Button className={`outline-none ${inputClassName} z-10`}>
+          <Popover.Button
+            className={`outline-none bg-white ${inputClassName} z-10`}
+          >
             <div className="relative flex h-full">
               <input
                 ref={inputRef}
@@ -98,7 +100,7 @@ const DatePicker: React.FC<DatePickerProps> = ({
                 htmlFor="date-picker-input"
                 className="absolute right-0 flex h-full cursor-pointer items-center justify-center rounded-r-lg bg-secondary300 px-4"
               >
-                <CalendarIcon />
+                <CalendarIcon className="!fill-secondary400" />
               </label>
             </div>
           </Popover.Button>

@@ -103,7 +103,7 @@ const MobileDatePicker: React.FC<MobileDatePickerProps> = ({
                 htmlFor="date-picker-input"
                 className="bg-secondary300 absolute right-0 flex h-full cursor-pointer items-center justify-center rounded-r-lg px-4"
               >
-                <CalendarIcon />
+                <CalendarIcon className="!fill-secondary400" />
               </label>
             </div>
           </Popover.Button>
