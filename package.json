@@ -1,6 +1,6 @@
 {
   "name": "persian-date-picker-reactjs",
-  "version": "1.0.1",
+  "version": "1.0.5",
   "main": "react-persian-date-picker/index.js",
   "module": "react-persian-date-picker/index.esm.js",
   "license": "MIT",
@@ -36,10 +36,7 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "dev": "vite",
-    "build": "rollup -c",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "build": "rollup -c"
   },
   "repository": {
     "type": "git",
