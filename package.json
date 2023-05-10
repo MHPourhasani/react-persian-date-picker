@@ -1,0 +1,86 @@
+{
+  "name": "persian-date-picker-reactjs",
+  "version": "1.0.1",
+  "main": "react-persian-date-picker/index.js",
+  "module": "react-persian-date-picker/index.esm.js",
+  "license": "MIT",
+  "author": "Mohammad Hasan Pourhasani  <mhpourhasani.dev@gmail.com> (https://github.com/MHPourhasani)",
+  "description": "Persian React Date Picker",
+  "keywords": [
+    "date-picker",
+    "persian-date-picker",
+    "time-picker",
+    "react",
+    "typescript",
+    "tailwindcss"
+  ],
+  "private": false,
+  "dependencies": {
+    "@headlessui/react": "^1.7.14",
+    "@testing-library/jest-dom": "^5.16.5",
+    "@testing-library/react": "^13.4.0",
+    "@testing-library/user-event": "^13.5.0",
+    "@types/jest": "^27.5.2",
+    "@types/node": "^16.18.26",
+    "@types/react": "^18.2.5",
+    "@types/react-dom": "^18.2.4",
+    "animate.css": "^4.1.1",
+    "fbemitter": "^3.0.0",
+    "react": "^18.2.0",
+    "react-date-object": "^2.1.7",
+    "react-dom": "^18.2.0",
+    "react-scripts": "5.0.1",
+    "rollup-plugin-tailwind": "^1.0.0",
+    "tslib": "^2.5.0",
+    "typescript": "^4.9.5",
+    "web-vitals": "^2.1.4"
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "rollup -c",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MHPourhasani/react-persian-date-picker.git"
+  },
+  "homepage": "https://github.com/MHPourhasani/react-persian-date-picker#readme",
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@babel/core": "^7.21.8",
+    "@rollup/plugin-commonjs": "^24.1.0",
+    "@rollup/plugin-node-resolve": "^15.0.2",
+    "autoprefixer": "^10.4.14",
+    "babel-loader": "^9.1.2",
+    "babel-preset-react-app": "^10.0.1",
+    "postcss": "^8.4.23",
+    "rollup-plugin-copy": "^3.4.0",
+    "rollup-plugin-image": "^1.0.2",
+    "rollup-plugin-import-css": "^3.2.1",
+    "rollup-plugin-peer-deps-external": "^2.2.4",
+    "rollup-plugin-postcss": "^4.0.2",
+    "rollup-plugin-scss": "^4.0.0",
+    "rollup-plugin-styles": "^4.0.0",
+    "rollup-plugin-svg": "^2.0.0",
+    "rollup-plugin-typescript2": "^0.34.1",
+    "tailwindcss": "^3.3.2"
+  }
+}
