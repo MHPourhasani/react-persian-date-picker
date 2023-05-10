@@ -23,16 +23,18 @@ export const DatePickerContainer = (props: DatePickerProps) => {
 };
 
 export const MobileDatePickerContainer = (props: MobileDatePickerProps) => {
-  <MobileDatePicker
-    value={props.value}
-    onChange={props.onChange}
-    maxDate={props.maxDate}
-    timePicker={props.timePicker}
-    inputClassName={props.inputClassName}
-    calendarClassName={props.calendarClassName}
-    dayClassName={props.dayClassName}
-    todayClassName={props.todayClassName}
-    selectedDayClassName={props.selectedDayClassName}
-    disabledDayClassName={props.disabledDayClassName}
-  />;
+  return (
+    <MobileDatePicker
+      value={props.value}
+      onChange={props.onChange}
+      maxDate={props.maxDate}
+      timePicker={props.timePicker}
+      inputClassName={props.inputClassName}
+      calendarClassName={props.calendarClassName}
+      dayClassName={props.dayClassName}
+      todayClassName={props.todayClassName}
+      selectedDayClassName={props.selectedDayClassName}
+      disabledDayClassName={props.disabledDayClassName}
+    />
+  );
 };
