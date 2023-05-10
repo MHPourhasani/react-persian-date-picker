@@ -14,22 +14,14 @@ $ yarn add persian-date-picker-reactjs
 
 ## Features
 
-- Installing and using this package is very simple
-- Define behavior per toast
-- Fancy progress bar to display the remaining time
-- Possibility to update a toast
-- Dark 🌒 and light ☀ mode
-- Ability to set the duration of toast display
-- Determinig where to display the toast, you can set four positions: top-right | top-left | bottom-right | bottom-left
-- types: success | warning | error | promise
-- And much more !
+## Available props
 
 |     | Props                |  Types  | Default                                          | types     | Description                          |
 | :-: | :------------------- | :-----: | :----------------------------------------------- | :-------- | ------------------------------------ |
 |  1  | value                |  Date   |                                                  | mandatory |                                      |
 |  2  | onChange             |  Date   |                                                  | mandatory | To change Date picker input          |
-|  3  | minDate              |  Date   |                                                  | optional  |                                      |
-|  4  | maxDate              |  Date   |                                                  | optional  |                                      |
+|  3  | minDate              |  Date   | --------                                         | optional  |                                      |
+|  4  | maxDate              |  Date   | --------                                         | optional  |                                      |
 |  5  | timePicker           | boolean | true                                             | optional  | To show Time picker (default true)   |
 |  6  | inputClassName       | string  |                                                  | optional  | To change Date picker input's styles |
 |  7  | calendarClassName    | string  | flex w-full flex-col items-center justify-center | optional  | To change calendar's styles          |
