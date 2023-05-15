@@ -5,7 +5,8 @@ export interface CalendarProps {
   calendar: Calendar;
   locale: Locale;
   format: string;
-  onChange: (a: any) => any;
+  changeHandler: (a: any) => any;
+  propsOnChange: (a: any) => any;
   minDate: any;
   maxDate: any;
   timePicker: boolean;

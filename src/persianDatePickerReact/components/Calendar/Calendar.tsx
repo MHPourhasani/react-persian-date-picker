@@ -23,7 +23,8 @@ const Calendar: React.FC<CalendarProps> = ({
   calendar,
   locale,
   format,
-  onChange,
+  changeHandler,
+  propsOnChange,
   minDate,
   maxDate,
   timePicker,
@@ -129,7 +130,7 @@ const Calendar: React.FC<CalendarProps> = ({
   }, [minDate, maxDate, onlyShowInRangeDates, value]);
 
   const handleChange = (selectedDate: any, state: any) => {
-    onChange?.(selectedDate);
+    changeHandler?.(selectedDate);
     if (state) setState(state);
   };
 
@@ -159,6 +160,8 @@ const Calendar: React.FC<CalendarProps> = ({
         <div className="relative flex w-full flex-col items-center justify-center">
           <DayPicker
             {...globalProps}
+            propsOnChange={propsOnChange}
+            timePicker={timePicker}
             onlyShowInRangeDates={onlyShowInRangeDates}
             numberOfMonths={numberOfMonths}
             weekStartDayIndex={weekStartDayIndex}
