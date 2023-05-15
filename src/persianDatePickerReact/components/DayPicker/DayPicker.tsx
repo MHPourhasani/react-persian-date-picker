@@ -8,6 +8,7 @@ import WeekDays from "../WeekDays/WeekDays";
 import selectDate from "../../utils/selectDate";
 import isSameDate from "../../utils/isSameDate";
 import getMonths from "../../utils/getMonths";
+import toTimeStamp from "../../utils/toTimeStamp";
 
 // interface
 import { DayPickerProps } from "./DayPickerInterface";
@@ -15,6 +16,8 @@ import { DayPickerProps } from "./DayPickerInterface";
 const DayPicker: React.FC<DayPickerProps> = ({
   state,
   onChange,
+  propsOnChange,
+  timePicker,
   onlyShowInRangeDates,
   numberOfMonths,
   weekStartDayIndex,
@@ -60,6 +63,8 @@ const DayPicker: React.FC<DayPickerProps> = ({
       date,
       selectedDate,
     });
+
+    propsOnChange(toTimeStamp(date, timePicker));
   };
 
   const getClassName = (object: any) => {

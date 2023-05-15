@@ -4,6 +4,8 @@ export interface DayPickerProps {
   state: any;
   setState: any;
   onChange: (a: any, b: any) => any;
+  propsOnChange: (a: any) => any;
+  timePicker: boolean;
   monthAndYears: any;
   setShowMonthPicker: (a: boolean) => any;
   setShowYearPicker: (a: boolean) => any;
