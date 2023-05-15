@@ -18,9 +18,12 @@ import { DatePickerProps } from "./DatePickerInterface";
 
 const DatePicker: React.FC<DatePickerProps> = ({
   value,
+  onChange,
   minDate,
   maxDate,
   timePicker = true,
+  readOnly = false,
+  inputPlaceholder,
   inputContainerClassName,
   calendarClassName,
   dayClassName,
@@ -59,9 +62,8 @@ const DatePicker: React.FC<DatePickerProps> = ({
     date = checkDate(date);
 
     setStringDate(date ? date.format() : "");
-
     setDate(date);
-  }, [value, calendar, locale, format]);
+  }, [value, calendar, locale, format, timePicker]);
 
   const handleChange = (date: any) => {
     setDate(date);
@@ -70,20 +72,30 @@ const DatePicker: React.FC<DatePickerProps> = ({
 
   return (
     <div className="w-full">
-      <Popover className="relative">
+      <Popover className="relative w-full">
         <>
           <Popover.Button
-            className={`outline-none bg-white z-10 h-12 border-1 border-secondary300 focus:border-primary rounded-lg cursor-pointer pl-2 ${inputContainerClassName}`}
+            className={`outline-none bg-white z-10 h-12 border-1 border-secondary300 rounded-lg pl-2 ${
+              readOnly
+                ? "cursor-not-allowed"
+                : "cursor-pointer focus:border-primary"
+            } ${inputContainerClassName}`}
           >
-            <div dir="ltr" className="relative flex h-full">
+            <div
+              dir={stringDate ? "ltr" : "rtl"}
+              className="relative flex h-full"
+            >
               <input
                 ref={inputRef}
                 id="date-picker-input"
                 readOnly
                 type="text"
-                value={stringDate}
+                value={stringDate ? stringDate : null}
                 data-time-stamp={toTimeStamp(date, timePicker)}
-                className="cursor-pointer"
+                placeholder={inputPlaceholder}
+                className={`placeholder:text-secondary400 ${
+                  inputPlaceholder ? "pr-16" : ""
+                } ${readOnly ? "cursor-not-allowed" : "cursor-pointer"}`}
               />
 
               <label
@@ -95,34 +107,37 @@ const DatePicker: React.FC<DatePickerProps> = ({
             </div>
           </Popover.Button>
 
-          <Transition
-            as={Fragment}
-            enter="transition ease-out duration-200"
-            enterFrom="opacity-0 translate-y-1"
-            enterTo="opacity-100 translate-y-0"
-            leave="transition ease-in duration-150"
-            leaveFrom="opacity-100 translate-y-0"
-            leaveTo="opacity-0 translate-y-1"
-          >
-            <Popover.Panel className="absolute rtl:right-0 ltr:left-0 z-10 mt-2.5 flex h-auto w-[21rem] items-center justify-center">
-              <Calendar
-                value={date}
-                onChange={handleChange}
-                calendar={calendar}
-                locale={locale}
-                format={format}
-                digits={digits}
-                minDate={minDate}
-                maxDate={maxDate}
-                timePicker={timePicker}
-                calendarClassName={calendarClassName}
-                dayClassName={dayClassName}
-                todayClassName={todayClassName}
-                selectedDayClassName={selectedDayClassName}
-                disabledDayClassName={disabledDayClassName}
-              />
-            </Popover.Panel>
-          </Transition>
+          {!readOnly && (
+            <Transition
+              as={Fragment}
+              enter="transition ease-out duration-200"
+              enterFrom="opacity-0 translate-y-1"
+              enterTo="opacity-100 translate-y-0"
+              leave="transition ease-in duration-150"
+              leaveFrom="opacity-100 translate-y-0"
+              leaveTo="opacity-0 translate-y-1"
+            >
+              <Popover.Panel className="absolute rtl:right-0 ltr:left-0 z-10 mt-2.5 flex h-auto w-[21rem] items-center justify-center">
+                <Calendar
+                  value={date}
+                  changeHandler={handleChange}
+                  propsOnChange={onChange}
+                  calendar={calendar}
+                  locale={locale}
+                  format={format}
+                  digits={digits}
+                  minDate={minDate}
+                  maxDate={maxDate}
+                  timePicker={timePicker}
+                  calendarClassName={calendarClassName}
+                  dayClassName={dayClassName}
+                  todayClassName={todayClassName}
+                  selectedDayClassName={selectedDayClassName}
+                  disabledDayClassName={disabledDayClassName}
+                />
+              </Popover.Panel>
+            </Transition>
+          )}
         </>
       </Popover>
     </div>
