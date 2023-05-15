@@ -1,6 +1,6 @@
 ## Persian Date Picker
 
-Simple persian react date picker with reactjs, typeScript and tailwindcss.
+Simple persian react date picker with React, TypeScript and Tailwindcss.
 
 ## Installation
 
@@ -15,18 +15,20 @@ yarn add persian-date-picker-reactjs
 
 ## Available props
 
-|     | Props                   |  Types  | Default                                                                                                          |  types   | Description                          |
-| :-: | :---------------------- | :-----: | :--------------------------------------------------------------------------------------------------------------- | :------: | :----------------------------------- | --- |
-|  1  | value                   |  Date   | string                                                                                                           |          | mandatory                            |     |
-|  2  | minDate                 |  Date   | --------                                                                                                         | optional |                                      |
-|  3  | maxDate                 |  Date   | --------                                                                                                         | optional |                                      |
-|  4  | timePicker              | boolean | true                                                                                                             | optional | To show Time picker (default true)   |
-|  5  | inputContainerClassName | string  | outline-none bg-white z-10 h-12 border-1 border-secondary300 focus:border-primary rounded-lg cursor-pointer pl-2 | optional | To change Date picker input's styles |
-|  6  | calendarClassName       | string  | flex w-full flex-col items-center justify-center                                                                 | optional | To change calendar's styles          |
-|  7  | dayClassName            | string  | flex h-12 w-12 items-center justify-center                                                                       | optional | To change calendar's styles          |
-|  8  | todayClassName          | string  | border-1.5 border-primary                                                                                        | optional | To change day's styles               |
-|  9  | selectedDayClassName    | string  | bg-primary text-white                                                                                            | optional | To change selected day's styles      |
-| 10  | disabledDayClassName    | string  | text-secondary300 cursor-text border-none                                                                        | optional | To change disabled day's styles      |
+|     | Props                   |     Types      | Default                                                                                                          |          |
+| :-: | :---------------------- | :------------: | :--------------------------------------------------------------------------------------------------------------- | :------: |
+|  1  | value                   | Date or string |                                                                                                                  | optional |
+|  1  | onChange                |    function    | (date: number) => void                                                                                           | optional |
+|  2  | minDate                 |      Date      | --------                                                                                                         | optional |
+|  3  | maxDate                 |      Date      | --------                                                                                                         | optional |
+|  4  | timePicker              |    boolean     | true                                                                                                             | optional |
+|  5  | readOnly                |    boolean     | false                                                                                                            | optional |
+|  6  | inputContainerClassName |     string     | outline-none bg-white z-10 h-12 border-1 border-secondary300 focus:border-primary rounded-lg cursor-pointer pl-2 | optional |
+|  7  | calendarClassName       |     string     | flex w-full flex-col items-center justify-center                                                                 | optional |
+|  8  | dayClassName            |     string     | flex h-12 w-12 items-center justify-center                                                                       | optional |
+|  9  | todayClassName          |     string     | border-1.5 border-primary                                                                                        | optional |
+| 10  | selectedDayClassName    |     string     | bg-primary text-white                                                                                            | optional |
+| 11  | disabledDayClassName    |     string     | text-secondary300 cursor-text border-none                                                                        | optional |
 
 ## Simple Usage
 
@@ -39,23 +41,19 @@ import "persian-date-picker-reactjs/styles.css";
 ```
 
 ```jsx
-import React, { useState } from "react";
-
 import {
   DatePickerContainer,
   MobileDatePickerContainer,
 } from "persian-date-picker-reactjs";
 
 const App = () => {
-  const [value, setValue] = useState(new Date());
-
   return (
     <div>
       {/* To show in desktop screen */}
-      <DatePickerContainer value={value} />
+      <DatePickerContainer />
 
       {/* To show in mobile screen */}
-      <MobileDatePickerContainer value={value} />
+      <MobileDatePickerContainer />
     </div>
   );
 };
@@ -72,8 +70,6 @@ import "persian-date-picker-reactjs/styles.css";
 ```
 
 ```jsx
-import React, { useState } from "react";
-
 import {
   DatePickerContainer,
   MobileDatePickerContainer,
@@ -84,12 +80,13 @@ const App = () => {
     <div>
       {/* To show in desktop screen */}
       <DatePickerContainer
-        // require props
-        value={value}
-        // optional props
+        value={new Date()}
+        onChange={(date) => console.log(date)}
         minDate={new Date(1390)}
         maxDate={new Date()}
         timePicker={true}
+        readOnly={false}
+        inputPlaceholder="Please select a date"
         inputContainerClassName=""
         calendarClassName=""
         dayClassName="rounded-xl cursor-pointer hover:border-1.5 hover:border-green-500"
@@ -100,12 +97,13 @@ const App = () => {
 
       {/* To show in mobile screen */}
       <MobileDatePickerContainer
-        // require props
-        value={value}
-        // optional props
+        value={new Date()}
+        onChange={(date) => console.log(date)}
         minDate={new Date(1390)}
         maxDate={new Date()}
-        timePicker={true}
+        timePicker={false}
+        readOnly={true}
+        inputPlaceholder="Please select a date"
         inputContainerClassName=""
         calendarClassName=""
         dayClassName="rounded-xl cursor-pointer hover:border-1.5 hover:border-green-500"
