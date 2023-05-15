@@ -146,10 +146,7 @@ const Calendar: React.FC<CalendarProps> = ({
     state.today && (
       <section
         dir="rtl"
-        className={
-          calendarClassName ||
-          `flex w-full flex-col items-center justify-center`
-        }
+        className={`flex w-full flex-col items-center shadow-calendar justify-center rounded-lg p-4 bg-white ${calendarClassName}`}
       >
         <Header
           {...globalProps}
