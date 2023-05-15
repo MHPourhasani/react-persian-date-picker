@@ -18,11 +18,10 @@ import { MobileDatePickerProps } from "./MobileDatePickerInterface";
 
 const MobileDatePicker: React.FC<MobileDatePickerProps> = ({
   value,
-  onChange,
   minDate,
   maxDate,
   timePicker = true,
-  inputClassName,
+  inputContainerClassName,
   calendarClassName,
   dayClassName,
   todayClassName,
@@ -64,32 +63,24 @@ const MobileDatePicker: React.FC<MobileDatePickerProps> = ({
 
     date = checkDate(date);
 
-    if (document.activeElement !== getInput(inputRef)) {
-      setStringDate(date ? date.format() : "");
-    }
+    setStringDate(date ? date.format() : "");
 
     setDate(date);
   }, [value, calendar, locale, format]);
 
   function handleChange(date: any) {
     setDate(date);
-    onChange?.(date);
-  }
-
-  function getInput(inputRef: any) {
-    if (!inputRef.current) return;
-
-    return inputRef.current.tagName === "INPUT"
-      ? inputRef.current
-      : inputRef.current.querySelector("input");
+    setStringDate(date ? date.format() : "");
   }
 
   return (
-    <div className="h-auto w-screen bg-white md:hidden">
-      <Popover className="flex w-full flex-col items-center justify-center overflow-y-auto">
+    <div className="h-auto">
+      <Popover className="flex w-full flex-col overflow-y-auto">
         <>
-          <Popover.Button className={`outline-none ${inputClassName} z-10`}>
-            <div className="relative flex h-full w-full">
+          <Popover.Button
+            className={`outline-none bg-white z-10 h-12 border-1 border-secondary300 focus:border-primary rounded-lg cursor-pointer pl-2 ${inputContainerClassName}`}
+          >
+            <div dir="ltr" className="relative flex h-full w-full">
               <input
                 ref={inputRef}
                 id="date-picker-input"
@@ -97,13 +88,14 @@ const MobileDatePicker: React.FC<MobileDatePickerProps> = ({
                 type="text"
                 value={stringDate}
                 data-time-stamp={toTimeStamp(date, timePicker)}
+                className="cursor-pointer"
               />
 
               <label
                 htmlFor="date-picker-input"
-                className="bg-secondary300 absolute right-0 flex h-full cursor-pointer items-center justify-center rounded-r-lg px-4"
+                className="bg-[#D9D9D9] absolute right-0 flex h-full cursor-pointer items-center justify-center rounded-r-lg px-4"
               >
-                <CalendarIcon className="!fill-secondary400" />
+                <CalendarIcon className="!fill-[#666666]" />
               </label>
             </div>
           </Popover.Button>
@@ -117,7 +109,7 @@ const MobileDatePicker: React.FC<MobileDatePickerProps> = ({
             leaveFrom="opacity-100"
             leaveTo="opacity-0"
           >
-            <div className="fixed inset-0 bg-gray-900 bg-opacity-50" />
+            <div className="fixed inset-0 w-screen bg-gray-900 bg-opacity-50" />
           </Transition.Child>
 
           <Transition
@@ -131,7 +123,7 @@ const MobileDatePicker: React.FC<MobileDatePickerProps> = ({
           >
             <Popover.Panel
               dir="rtl"
-              className="absolute bottom-0 z-10 w-full rounded-t-3xl bg-white p-4"
+              className="absolute bottom-0 w-screen z-10 rounded-t-3xl bg-white p-4"
             >
               <Calendar
                 value={date}
