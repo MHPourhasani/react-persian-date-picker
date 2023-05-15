@@ -18,11 +18,10 @@ import { DatePickerProps } from "./DatePickerInterface";
 
 const DatePicker: React.FC<DatePickerProps> = ({
   value,
-  onChange,
   minDate,
   maxDate,
   timePicker = true,
-  inputClassName,
+  inputContainerClassName,
   calendarClassName,
   dayClassName,
   todayClassName,
@@ -59,34 +58,24 @@ const DatePicker: React.FC<DatePickerProps> = ({
 
     date = checkDate(date);
 
-    if (document.activeElement !== getInput(inputRef)) {
-      setStringDate(date ? date.format() : "");
-    }
+    setStringDate(date ? date.format() : "");
 
     setDate(date);
   }, [value, calendar, locale, format]);
 
   const handleChange = (date: any) => {
     setDate(date);
-    onChange?.(date);
-  };
-
-  const getInput = (inputRef: any) => {
-    if (!inputRef.current) return;
-
-    return inputRef.current.tagName === "INPUT"
-      ? inputRef.current
-      : inputRef.current.querySelector("input");
+    setStringDate(date ? date.format() : "");
   };
 
   return (
-    <div className="hidden sm:fixed sm:top-16 sm:block">
+    <div className="w-full">
       <Popover className="relative">
         <>
           <Popover.Button
-            className={`outline-none bg-white ${inputClassName} z-10`}
+            className={`outline-none bg-white z-10 h-12 border-1 border-secondary300 focus:border-primary rounded-lg cursor-pointer pl-2 ${inputContainerClassName}`}
           >
-            <div className="relative flex h-full">
+            <div dir="ltr" className="relative flex h-full">
               <input
                 ref={inputRef}
                 id="date-picker-input"
@@ -94,13 +83,14 @@ const DatePicker: React.FC<DatePickerProps> = ({
                 type="text"
                 value={stringDate}
                 data-time-stamp={toTimeStamp(date, timePicker)}
+                className="cursor-pointer"
               />
 
               <label
                 htmlFor="date-picker-input"
-                className="absolute right-0 flex h-full cursor-pointer items-center justify-center rounded-r-lg bg-secondary300 px-4"
+                className="absolute right-0 flex h-full cursor-pointer items-center justify-center rounded-r-lg bg-[#D9D9D9] px-4"
               >
-                <CalendarIcon className="!fill-secondary400" />
+                <CalendarIcon className="!fill-[#666666]" />
               </label>
             </div>
           </Popover.Button>
@@ -114,7 +104,7 @@ const DatePicker: React.FC<DatePickerProps> = ({
             leaveFrom="opacity-100 translate-y-0"
             leaveTo="opacity-0 translate-y-1"
           >
-            <Popover.Panel className="absolute left-0 z-10 mt-3 flex shadow-calendar h-auto w-[21rem] items-center justify-center rounded-lg p-4">
+            <Popover.Panel className="absolute rtl:right-0 ltr:left-0 z-10 mt-2.5 flex h-auto w-[21rem] items-center justify-center">
               <Calendar
                 value={date}
                 onChange={handleChange}
