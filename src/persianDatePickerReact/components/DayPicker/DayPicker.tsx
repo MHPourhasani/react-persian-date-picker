@@ -63,7 +63,10 @@ const DayPicker: React.FC<DayPickerProps> = ({
   };
 
   const getClassName = (object: any) => {
-    const names = ["flex h-12 w-12 items-center justify-center", dayClassName],
+    const names = [
+        "flex h-12 w-12 items-center justify-center rounded-xl cursor-pointer hover:border-1.5 hover:border-primary",
+        dayClassName,
+      ],
       { date, current } = object;
 
     if (
@@ -78,11 +81,11 @@ const DayPicker: React.FC<DayPickerProps> = ({
       if (!object.disabled) object.disabled = true;
     }
 
-    if (!current) names.push("border-none cursor-default bg-transparent");
+    if (!current) names.push("border-none cursor-text bg-transparent");
 
     if (!object.disabled || !onlyShowInRangeDates) {
       if (isSameDate(date, today))
-        names.push(todayClassName || "border-1.5 border-primary");
+        names.push(todayClassName || "border-1.5 border-primary rounded-xl");
 
       if (isSelected(date)) {
         names.push(selectedDayClassName || "bg-primary text-white");
@@ -97,9 +100,7 @@ const DayPicker: React.FC<DayPickerProps> = ({
   };
 
   return (
-    <section
-      className={`mt-7 flex w-full flex-col items-center justify-center`}
-    >
+    <section className="mt-7 flex w-full flex-col items-center justify-center">
       <WeekDays />
 
       {months.map((weeks, monthIndex) => (
