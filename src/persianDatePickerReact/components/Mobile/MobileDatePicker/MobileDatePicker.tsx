@@ -18,9 +18,12 @@ import { MobileDatePickerProps } from "./MobileDatePickerInterface";
 
 const MobileDatePicker: React.FC<MobileDatePickerProps> = ({
   value,
+  onChange,
   minDate,
   maxDate,
   timePicker = true,
+  readOnly = false,
+  inputPlaceholder,
   inputContainerClassName,
   calendarClassName,
   dayClassName,
@@ -46,32 +49,26 @@ const MobileDatePicker: React.FC<MobileDatePickerProps> = ({
   useEffect(() => {
     let date = value;
 
-    function checkDate(date: any) {
+    const checkDate = (date: any) => {
       if (!date) return;
       if (!(date instanceof DateObject))
         date = new DateObject({ date, calendar, locale, format });
 
-      if (date.calendar !== calendar) date.setCalendar(calendar);
-
-      date.set({
-        locale,
-        format,
-      });
+      date.set({ locale, format });
 
       return date;
-    }
+    };
 
     date = checkDate(date);
 
     setStringDate(date ? date.format() : "");
-
     setDate(date);
-  }, [value, calendar, locale, format]);
+  }, [value, calendar, locale, format, timePicker]);
 
-  function handleChange(date: any) {
+  const handleChange = (date: any) => {
     setDate(date);
     setStringDate(date ? date.format() : "");
-  }
+  };
 
   return (
     <div className="h-auto">
@@ -88,7 +85,8 @@ const MobileDatePicker: React.FC<MobileDatePickerProps> = ({
                 type="text"
                 value={stringDate}
                 data-time-stamp={toTimeStamp(date, timePicker)}
-                className="cursor-pointer"
+                placeholder={inputPlaceholder}
+                className={readOnly ? "cursor-not-allowed" : "cursor-pointer"}
               />
 
               <label
@@ -100,49 +98,53 @@ const MobileDatePicker: React.FC<MobileDatePickerProps> = ({
             </div>
           </Popover.Button>
 
-          <Transition.Child
-            as={Fragment}
-            enter="ease-in-out"
-            enterFrom="opacity-0"
-            enterTo="opacity-100"
-            leave="ease-in-out"
-            leaveFrom="opacity-100"
-            leaveTo="opacity-0"
-          >
-            <div className="fixed inset-0 w-screen bg-gray-900 bg-opacity-50" />
-          </Transition.Child>
-
-          <Transition
-            as={Fragment}
-            enter="transition ease-out duration-200"
-            enterFrom="opacity-0 translate-y-full duration-300"
-            enterTo="opacity-100 h-auto translate-y-0"
-            leave="transition ease-in duration-150"
-            leaveFrom="opacity-100 translate-y-0"
-            leaveTo="opacity-0 translate-y-full duration-300"
-          >
-            <Popover.Panel
-              dir="rtl"
-              className="absolute bottom-0 w-screen z-10 rounded-t-3xl bg-white p-4"
-            >
-              <Calendar
-                value={date}
-                onChange={handleChange}
-                calendar={calendar}
-                locale={locale}
-                format={format}
-                digits={digits}
-                minDate={minDate}
-                maxDate={maxDate}
-                timePicker={timePicker}
-                calendarClassName={calendarClassName}
-                dayClassName={dayClassName}
-                todayClassName={todayClassName}
-                selectedDayClassName={selectedDayClassName}
-                disabledDayClassName={disabledDayClassName}
-              />
-            </Popover.Panel>
-          </Transition>
+          {!readOnly && (
+            <>
+              <Transition.Child
+                as={Fragment}
+                enter="ease-in-out"
+                enterFrom="opacity-0"
+                enterTo="opacity-100"
+                leave="ease-in-out"
+                leaveFrom="opacity-100"
+                leaveTo="opacity-0"
+              >
+                <div className="fixed inset-0 w-screen bg-gray-900 bg-opacity-50" />
+              </Transition.Child>
+              <Transition
+                as={Fragment}
+                enter="transition ease-out duration-200"
+                enterFrom="opacity-0 translate-y-full duration-300"
+                enterTo="opacity-100 h-auto translate-y-0"
+                leave="transition ease-in duration-150"
+                leaveFrom="opacity-100 translate-y-0"
+                leaveTo="opacity-0 translate-y-full duration-300"
+              >
+                <Popover.Panel
+                  dir="rtl"
+                  className="absolute bottom-0 w-screen z-10 rounded-t-3xl bg-white p-4"
+                >
+                  <Calendar
+                    value={date}
+                    changeHandler={handleChange}
+                    propsOnChange={onChange}
+                    calendar={calendar}
+                    locale={locale}
+                    format={format}
+                    digits={digits}
+                    minDate={minDate}
+                    maxDate={maxDate}
+                    timePicker={timePicker}
+                    calendarClassName={calendarClassName}
+                    dayClassName={dayClassName}
+                    todayClassName={todayClassName}
+                    selectedDayClassName={selectedDayClassName}
+                    disabledDayClassName={disabledDayClassName}
+                  />
+                </Popover.Panel>
+              </Transition>
+            </>
+          )}
         </>
       </Popover>
     </div>
