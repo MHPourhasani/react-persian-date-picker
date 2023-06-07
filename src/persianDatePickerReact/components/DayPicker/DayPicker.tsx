@@ -64,7 +64,7 @@ const DayPicker: React.FC<DayPickerProps> = ({
       selectedDate,
     });
 
-    propsOnChange(toTimeStamp(date, timePicker));
+    propsOnChange(toTimeStamp(selectedDate, timePicker));
   };
 
   const getClassName = (object: any) => {
