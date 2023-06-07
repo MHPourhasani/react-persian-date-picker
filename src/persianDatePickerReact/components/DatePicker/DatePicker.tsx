@@ -17,131 +17,125 @@ import CalendarIcon from "../../assets/svg/CalendarIcon";
 import { DatePickerProps } from "./DatePickerInterface";
 
 const DatePicker: React.FC<DatePickerProps> = ({
-  value,
-  onChange,
-  minDate,
-  maxDate,
-  timePicker = true,
-  readOnly = false,
-  inputPlaceholder,
-  inputContainerClassName,
-  calendarClassName,
-  dayClassName,
-  todayClassName,
-  selectedDayClassName,
-  disabledDayClassName,
+	value,
+	onChange,
+	minDate,
+	maxDate,
+	timePicker = true,
+	readOnly = false,
+	inputPlaceholder,
+	inputContainerClassName,
+	calendarClassName,
+	dayClassName,
+	todayClassName,
+	selectedDayClassName,
+	disabledDayClassName,
 }) => {
-  const [date, setDate] = useState(),
-    [stringDate, setStringDate] = useState<string>("");
+	const [date, setDate] = useState(),
+		[stringDate, setStringDate] = useState<string>("");
 
-  const inputRef = useRef<any>();
+	const inputRef = useRef<any>();
 
-  const calendar = persian,
-    locale = persian_fa,
-    digits = locale.digits;
+	const calendar = persian,
+		locale = persian_fa,
+		digits = locale.digits;
 
-  let format = "YYYY/MM/DD HH:mm";
+	let format = "YYYY/MM/DD HH:mm";
 
-  if (!timePicker) {
-    format = "YYYY/MM/DD";
-  }
+	if (!timePicker) {
+		format = "YYYY/MM/DD";
+	}
 
-  useEffect(() => {
-    let date = value;
+	useEffect(() => {
+		let date = value;
 
-    const checkDate = (date: any) => {
-      if (!date) return;
-      if (!(date instanceof DateObject))
-        date = new DateObject({ date, calendar, locale, format });
+		const checkDate = (date: any) => {
+			if (!date) return;
+			if (!(date instanceof DateObject)) date = new DateObject({ date, calendar, locale, format });
 
-      date.set({ locale, format });
+			date.set({ locale, format });
 
-      return date;
-    };
+			return date;
+		};
 
-    date = checkDate(date);
+		date = checkDate(date);
 
-    setStringDate(date ? date.format() : "");
-    setDate(date);
-  }, [value, calendar, locale, format, timePicker]);
+		setStringDate(date ? date.format() : "");
+		setDate(date);
+	}, [value, calendar, locale, format, timePicker]);
 
-  const handleChange = (date: any) => {
-    setDate(date);
-    setStringDate(date ? date.format() : "");
-  };
+	const handleChange = (date: any) => {
+		setDate(date);
+		setStringDate(date ? date.format() : "");
+	};
 
-  return (
-    <div className="w-full">
-      <Popover className="relative w-full">
-        <>
-          <Popover.Button
-            className={`outline-none bg-white z-10 h-12 border-1 border-secondary300 rounded-lg pl-2 ${
-              readOnly
-                ? "cursor-not-allowed"
-                : "cursor-pointer focus:border-primary"
-            } ${inputContainerClassName}`}
-          >
-            <div
-              dir={stringDate ? "ltr" : "rtl"}
-              className="relative flex h-full"
-            >
-              <input
-                ref={inputRef}
-                id="date-picker-input"
-                readOnly
-                type="text"
-                value={stringDate ? stringDate : null}
-                data-time-stamp={toTimeStamp(date, timePicker)}
-                placeholder={inputPlaceholder}
-                className={`placeholder:text-secondary400 ${
-                  inputPlaceholder ? "pr-16" : ""
-                } ${readOnly ? "cursor-not-allowed" : "cursor-pointer"}`}
-              />
+	return (
+		<div className="w-full font-iranyekan">
+			<Popover className="relative w-full">
+				<>
+					<Popover.Button
+						className={`outline-none bg-white z-10 h-12 border-1 border-secondary300 rounded-lg pl-2 ${
+							readOnly ? "cursor-not-allowed" : "cursor-pointer focus:border-primary"
+						} ${inputContainerClassName}`}
+					>
+						<div dir={stringDate ? "ltr" : "rtl"} className="relative flex h-full">
+							<input
+								ref={inputRef}
+								id="date-picker-input"
+								readOnly
+								type="text"
+								value={stringDate ? stringDate : null}
+								data-time-stamp={toTimeStamp(date, timePicker)}
+								placeholder={inputPlaceholder}
+								className={`placeholder:text-secondary400 ${inputPlaceholder ? "pr-16" : ""} ${
+									readOnly ? "cursor-not-allowed" : "cursor-pointer"
+								}`}
+							/>
 
-              <label
-                htmlFor="date-picker-input"
-                className="absolute right-0 flex h-full cursor-pointer items-center justify-center rounded-r-lg bg-[#D9D9D9] px-4"
-              >
-                <CalendarIcon className="!fill-[#666666]" />
-              </label>
-            </div>
-          </Popover.Button>
+							<label
+								htmlFor="date-picker-input"
+								className="absolute right-0 flex h-full cursor-pointer items-center justify-center rounded-r-lg bg-[#D9D9D9] px-4"
+							>
+								<CalendarIcon className="!fill-[#666666]" />
+							</label>
+						</div>
+					</Popover.Button>
 
-          {!readOnly && (
-            <Transition
-              as={Fragment}
-              enter="transition ease-out duration-200"
-              enterFrom="opacity-0 translate-y-1"
-              enterTo="opacity-100 translate-y-0"
-              leave="transition ease-in duration-150"
-              leaveFrom="opacity-100 translate-y-0"
-              leaveTo="opacity-0 translate-y-1"
-            >
-              <Popover.Panel className="absolute rtl:right-0 ltr:left-0 z-10 mt-2.5 flex h-auto w-[21rem] items-center justify-center">
-                <Calendar
-                  value={date}
-                  changeHandler={handleChange}
-                  propsOnChange={onChange}
-                  calendar={calendar}
-                  locale={locale}
-                  format={format}
-                  digits={digits}
-                  minDate={minDate}
-                  maxDate={maxDate}
-                  timePicker={timePicker}
-                  calendarClassName={calendarClassName}
-                  dayClassName={dayClassName}
-                  todayClassName={todayClassName}
-                  selectedDayClassName={selectedDayClassName}
-                  disabledDayClassName={disabledDayClassName}
-                />
-              </Popover.Panel>
-            </Transition>
-          )}
-        </>
-      </Popover>
-    </div>
-  );
+					{!readOnly && (
+						<Transition
+							as={Fragment}
+							enter="transition ease-out duration-200"
+							enterFrom="opacity-0 translate-y-1"
+							enterTo="opacity-100 translate-y-0"
+							leave="transition ease-in duration-150"
+							leaveFrom="opacity-100 translate-y-0"
+							leaveTo="opacity-0 translate-y-1"
+						>
+							<Popover.Panel className="absolute rtl:right-0 ltr:left-0 z-10 mt-2.5 flex h-auto w-[21rem] items-center justify-center">
+								<Calendar
+									value={date}
+									changeHandler={handleChange}
+									propsOnChange={onChange}
+									calendar={calendar}
+									locale={locale}
+									format={format}
+									digits={digits}
+									minDate={minDate}
+									maxDate={maxDate}
+									timePicker={timePicker}
+									calendarClassName={calendarClassName}
+									dayClassName={dayClassName}
+									todayClassName={todayClassName}
+									selectedDayClassName={selectedDayClassName}
+									disabledDayClassName={disabledDayClassName}
+								/>
+							</Popover.Panel>
+						</Transition>
+					)}
+				</>
+			</Popover>
+		</div>
+	);
 };
 
 export default DatePicker;
