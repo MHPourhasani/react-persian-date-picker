@@ -25,6 +25,7 @@ const MobileDatePicker: React.FC<MobileDatePickerProps> = ({
 	readOnly = false,
 	inputPlaceholder,
 	inputContainerClassName,
+	calendarIconClassName,
 	calendarClassName,
 	dayClassName,
 	todayClassName,
@@ -42,9 +43,7 @@ const MobileDatePicker: React.FC<MobileDatePickerProps> = ({
 
 	let format = "YYYY/MM/DD HH:mm";
 
-	if (!timePicker) {
-		format = "YYYY/MM/DD";
-	}
+	if (!timePicker) format = "YYYY/MM/DD";
 
 	useEffect(() => {
 		let date = value;
@@ -74,27 +73,29 @@ const MobileDatePicker: React.FC<MobileDatePickerProps> = ({
 			<Popover className="flex w-full flex-col overflow-y-auto">
 				<>
 					<Popover.Button
-						className={`outline-none bg-white z-10 h-12 border-1 border-secondary300 focus:border-primary rounded-lg cursor-pointer pl-2 ${inputContainerClassName}`}
+						dir="ltr"
+						className={`flex items-center justify-center h-12 border-1 border-secondary300 rounded-lg outline-none focus:outline-none ${
+							readOnly ? "" : "cursor-pointer focus:border-1 focus:border-primary"
+						} ${inputContainerClassName}`}
 					>
-						<div dir={stringDate ? "ltr" : "rtl"} className="relative flex h-full w-full">
-							<input
-								ref={inputRef}
-								id="date-picker-input"
-								readOnly
-								type="text"
-								value={stringDate ? stringDate : null}
-								data-time-stamp={toTimeStamp(date, timePicker)}
-								placeholder={inputPlaceholder}
-								className={readOnly ? "cursor-not-allowed" : "cursor-pointer"}
-							/>
+						<input
+							dir={stringDate ? "ltr" : "rtl"}
+							ref={inputRef}
+							id="date-picker-input"
+							readOnly
+							type="text"
+							value={stringDate ? stringDate : null}
+							data-time-stamp={toTimeStamp(date, timePicker)}
+							placeholder={inputPlaceholder}
+							className={`h-full px-2 rounded-l-lg bg-white placeholder:text-secondary400 focus:outline-none`}
+						/>
 
-							<label
-								htmlFor="date-picker-input"
-								className="bg-[#D9D9D9] absolute right-0 flex h-full cursor-pointer items-center justify-center rounded-r-lg px-4"
-							>
-								<CalendarIcon className="!fill-[#666666]" />
-							</label>
-						</div>
+						<label
+							htmlFor="date-picker-input"
+							className={`flex h-full items-center justify-center rounded-r-lg bg-[#D9D9D9] px-4 ${calendarIconClassName}`}
+						>
+							<CalendarIcon className="!fill-[#666666]" />
+						</label>
 					</Popover.Button>
 
 					{!readOnly && (
