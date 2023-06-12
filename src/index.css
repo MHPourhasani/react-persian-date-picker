@@ -4,22 +4,6 @@
 @font-face {
   font-family: iranyekan;
   font-style: normal;
-  font-weight: bold;
-  src: url("./persianDatePickerReact/assets/fonts/iranyekanwebboldfanum.woff")
-    format("woff");
-}
-
-@font-face {
-  font-family: iranyekan;
-  font-style: normal;
-  font-weight: 100;
-  src: url("./persianDatePickerReact/assets/fonts/iranyekanwebthinfanum.woff")
-    format("woff");
-}
-
-@font-face {
-  font-family: iranyekan;
-  font-style: normal;
   font-weight: 300;
   src: url("./persianDatePickerReact/assets/fonts/iranyekanweblightfanum.woff")
     format("woff");
@@ -30,22 +14,6 @@
   font-style: normal;
   font-weight: normal;
   src: url("./persianDatePickerReact/assets/fonts/iranyekanwebregularfanum.woff")
-    format("woff");
-}
-
-@font-face {
-  font-family: iranyekan;
-  font-style: normal;
-  font-weight: 500;
-  src: url("./persianDatePickerReact/assets/fonts/iranyekanwebmediumfanum.woff")
-    format("woff");
-}
-
-@font-face {
-  font-family: iranyekan;
-  font-style: normal;
-  font-weight: 800;
-  src: url("./persianDatePickerReact/assets/fonts/iranyekanwebextraboldfanum.woff")
     format("woff");
 }
 
