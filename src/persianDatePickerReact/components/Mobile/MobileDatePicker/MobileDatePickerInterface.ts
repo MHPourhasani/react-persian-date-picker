@@ -9,6 +9,7 @@ export interface MobileDatePickerProps {
 	readOnly?: boolean;
 	inputPlaceholder?: string;
 	inputContainerClassName?: string;
+	inputClassName?: string;
 	calendarIconClassName?: string;
 	calendarClassName?: string;
 	dayClassName?: string;

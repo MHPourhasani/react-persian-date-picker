@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect, useRef, useState } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import { Popover, Transition } from "@headlessui/react";
 import DateObject from "react-date-object";
 import persian from "react-date-object/calendars/persian";
@@ -25,6 +25,7 @@ const MobileDatePicker: React.FC<MobileDatePickerProps> = ({
 	readOnly = false,
 	inputPlaceholder,
 	inputContainerClassName,
+	inputClassName,
 	calendarIconClassName,
 	calendarClassName,
 	dayClassName,
@@ -32,10 +33,8 @@ const MobileDatePicker: React.FC<MobileDatePickerProps> = ({
 	selectedDayClassName,
 	disabledDayClassName,
 }) => {
-	const [date, setDate] = useState(),
+	const [date, setDate] = useState<any>(),
 		[stringDate, setStringDate] = useState<string>("");
-
-	const inputRef = useRef<any>();
 
 	const calendar = persian,
 		locale = persian_fa,
@@ -70,29 +69,32 @@ const MobileDatePicker: React.FC<MobileDatePickerProps> = ({
 
 	return (
 		<div className="h-auto font-iranyekan sm:hidden">
-			<Popover className="flex w-full flex-col overflow-y-auto">
+			<Popover className="w-full overflow-y-auto">
 				<>
 					<Popover.Button
 						dir="ltr"
-						className={`flex items-center justify-center h-12 border-1 border-secondary300 rounded-lg outline-none focus:outline-none ${
-							readOnly ? "" : "cursor-pointer focus:border-1 focus:border-primary"
+						className={`flex items-center w-fit justify-center h-12 border-1 border-secondary300 rounded-lg outline-none focus:outline-none ${
+							!readOnly && "focus:border-primary"
 						} ${inputContainerClassName}`}
 					>
 						<input
 							dir={stringDate ? "ltr" : "rtl"}
-							ref={inputRef}
 							id="date-picker-input"
 							readOnly
 							type="text"
 							value={stringDate ? stringDate : null}
 							data-time-stamp={toTimeStamp(date, timePicker)}
 							placeholder={inputPlaceholder}
-							className={`h-full px-2 rounded-l-lg bg-white placeholder:text-secondary400 focus:outline-none`}
+							className={`h-full flex-1 px-2 rounded-l-lg bg-white placeholder:text-secondary400 focus:outline-none ${
+								readOnly ? "cursor-not-allowed" : "cursor-pointer"
+							} ${inputClassName}`}
 						/>
 
 						<label
 							htmlFor="date-picker-input"
-							className={`flex h-full items-center justify-center rounded-r-lg bg-[#D9D9D9] px-4 ${calendarIconClassName}`}
+							className={`flex h-full items-center justify-center rounded-r-lg bg-[#D9D9D9] px-4 ${
+								readOnly ? "cursor-not-allowed" : "cursor-pointer"
+							} ${calendarIconClassName}`}
 						>
 							<CalendarIcon className="!fill-[#666666]" />
 						</label>
@@ -109,7 +111,7 @@ const MobileDatePicker: React.FC<MobileDatePickerProps> = ({
 								leaveFrom="opacity-100"
 								leaveTo="opacity-0"
 							>
-								<div className="fixed inset-0 w-screen bg-gray-900 bg-opacity-50" />
+								<div className="fixed inset-0 w-screen h-screen bg-gray-900 bg-opacity-50" />
 							</Transition.Child>
 							<Transition
 								as={Fragment}
@@ -120,7 +122,10 @@ const MobileDatePicker: React.FC<MobileDatePickerProps> = ({
 								leaveFrom="opacity-100 translate-y-0"
 								leaveTo="opacity-0 translate-y-full duration-300"
 							>
-								<Popover.Panel dir="rtl" className="absolute bottom-0 w-screen z-10 rounded-t-3xl bg-white p-4">
+								<Popover.Panel
+									dir="rtl"
+									className="absolute bottom-0 w-screen z-10 flex justify-center items-center rounded-t-3xl bg-white p-4"
+								>
 									<Calendar
 										value={date}
 										changeHandler={handleChange}
