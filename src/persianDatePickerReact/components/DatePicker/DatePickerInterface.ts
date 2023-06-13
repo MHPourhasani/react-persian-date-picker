@@ -9,6 +9,7 @@ export interface DatePickerProps {
 	readOnly?: boolean;
 	inputPlaceholder?: string;
 	inputContainerClassName?: string;
+	inputClassName?: string;
 	calendarIconClassName?: string;
 	calendarClassName?: string;
 	dayClassName?: string;
