@@ -73,7 +73,7 @@ const DatePicker: React.FC<DatePickerProps> = ({
 				<>
 					<Popover.Button
 						dir="ltr"
-						className={`flex items-center w-fit justify-center h-12 border-1 border-secondary300 rounded-lg outline-none focus:outline-none ${
+						className={`relative flex items-center w-fit justify-center h-12 border-1 border-secondary300 rounded-lg outline-none focus:outline-none ${
 							!readOnly && "focus:border-primary"
 						} ${inputContainerClassName}`}
 					>
@@ -110,7 +110,7 @@ const DatePicker: React.FC<DatePickerProps> = ({
 							leaveFrom="opacity-100 translate-y-0"
 							leaveTo="opacity-0 translate-y-1"
 						>
-							<Popover.Panel className="absolute rtl:right-0 ltr:left-0 z-10 mt-2.5 flex h-auto w-[21rem] items-center justify-center">
+							<Popover.Panel className="absolute rtl:right-0 ltr:left-0 z-50 mt-2.5 flex h-auto w-[21rem] items-center justify-center">
 								<Calendar
 									value={date}
 									changeHandler={handleChange}
