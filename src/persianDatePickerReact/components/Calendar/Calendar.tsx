@@ -129,6 +129,8 @@ const Calendar: React.FC<CalendarProps> = ({
 		state,
 		setState,
 		onChange: handleChange,
+		propsOnChange: propsOnChange,
+		timePicker: timePicker,
 		monthAndYears: getMonthsAndYears(state, numberOfMonths),
 		setShowDayPicker,
 		setShowMonthPicker,
@@ -154,8 +156,6 @@ const Calendar: React.FC<CalendarProps> = ({
 					{showDayPicker && (
 						<DayPicker
 							{...globalProps}
-							propsOnChange={propsOnChange}
-							timePicker={timePicker}
 							onlyShowInRangeDates={onlyShowInRangeDates}
 							numberOfMonths={numberOfMonths}
 							weekStartDayIndex={weekStartDayIndex}
