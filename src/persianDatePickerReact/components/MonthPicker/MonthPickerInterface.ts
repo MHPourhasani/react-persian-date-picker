@@ -1,9 +1,12 @@
 import { Calendar, DateType, Locale } from "react-date-object";
 
 export interface MonthPickerProps {
-  state: any;
-  onChange: (a: any, b: any) => any;
-  setShowMonthPicker: (a: any) => any;
+	state: any;
+	onChange: (a: any, b: any) => any;
+	propsOnChange: (a: any) => any;
+	timePicker: boolean;
+	setShowDayPicker: (a: any) => any;
+	setShowMonthPicker: (a: any) => any;
 }
 
 export interface StateType {
