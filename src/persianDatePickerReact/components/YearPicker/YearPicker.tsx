@@ -3,11 +3,12 @@ import DateObject from "react-date-object";
 
 // utils
 import toLocaleDigits from "../../utils/toLocaleDigits";
+import toTimeStamp from "../../utils/toTimeStamp";
 
 // interface
 import { YearPickerProps } from "./YearPickerInterface";
 
-const YearPicker: React.FC<YearPickerProps> = ({ state, onChange, setShowMonthPicker, setShowYearPicker, yearState }) => {
+const YearPicker: React.FC<YearPickerProps> = ({ state, onChange, propsOnChange, timePicker, setShowMonthPicker, setShowYearPicker, yearState }) => {
 	const { date, minDate, maxDate, onlyShowInRangeDates } = state,
 		digits = date.digits;
 
@@ -52,6 +53,8 @@ const YearPicker: React.FC<YearPickerProps> = ({ state, onChange, setShowMonthPi
 
 		setShowMonthPicker(true);
 		setShowYearPicker(false);
+
+		propsOnChange(toTimeStamp(selectedDate, timePicker));
 	};
 
 	const getClassName = (year: number) => {
