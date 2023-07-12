@@ -61,8 +61,7 @@ const App = () => {
 	);
 };
 ```
-The output is like this
-![alt text](https://github.com/MHPourhasani/react-persian-date-picker/blob/master/screenShot/date-picker-blue.jpg)
+![date-picker-blue](https://github.com/MHPourhasani/react-persian-date-picker/blob/master/screenShot/date-picker-blue.jpg)
 
 ## Advanced Examples
 
@@ -123,9 +122,7 @@ const App = () => {
 	);
 };
 ```
-
-The output is like this
-![alt text](https://github.com/MHPourhasani/react-persian-date-picker/blob/master/screenShot/date-picker-green.jpg)
+![date-picker-green](https://github.com/MHPourhasani/react-persian-date-picker/blob/master/screenShot/date-picker-green.jpg)
 
 ## License
 
