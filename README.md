@@ -38,6 +38,7 @@ yarn add persian-date-picker-reactjs
 import "persian-date-picker-reactjs/styles.css";
 
 // Add this in the component you want to use
+import { DatePickerContainer, MobileDatePickerContainer } from "persian-date-picker-reactjs";
 import "persian-date-picker-reactjs/styles.css";
 
 // In App.jsx or App.tsx file in Vite React project added this
@@ -60,6 +61,8 @@ const App = () => {
 	);
 };
 ```
+The output is like this
+![alt text](https://github.com/MHPourhasani/react-persian-date-picker/blob/master/screenShot/date-picker-blue.jpg)
 
 ## Advanced Examples
 
@@ -120,6 +123,9 @@ const App = () => {
 	);
 };
 ```
+
+The output is like this
+![alt text](https://github.com/MHPourhasani/react-persian-date-picker/blob/master/screenShot/date-picker-green.jpg)
 
 ## License
 
