@@ -47,8 +47,8 @@ const obj = {
 		copy({
 			targets: [
 				{
-					src: "src/persianDatePickerReact/assets",
-					dest: "react-persian-date-picker/persianDatePickerReact",
+					src: "src/reactTags/assets",
+					dest: "tags-input-reactjs/reactTags",
 				},
 			],
 		}),
