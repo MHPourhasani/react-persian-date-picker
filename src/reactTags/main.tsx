@@ -15,6 +15,7 @@ const ReactTags = (props: TagContainerProps) => {
       inputClassName={props.inputClassName}
       addToCategoryOnClick={props.addToCategoryOnClick}
       dropDownContainerClassName={props.dropDownContainerClassName}
+      tagsContainerClassName={props.tagsContainerClassName}
     />
   );
 };

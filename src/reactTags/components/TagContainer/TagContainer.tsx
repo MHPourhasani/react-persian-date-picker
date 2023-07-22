@@ -17,6 +17,7 @@ export default function TagContainer({
     inputClassName,
     addToCategoryOnClick,
     dropDownContainerClassName,
+    tagsContainerClassName
 }: TagContainerProps) {
     const [userTheme, setUserTheme] = useState<ThemeType>('light');
     const [inputValue, setInputValue] = useState('');
@@ -124,7 +125,7 @@ export default function TagContainer({
             onMouseDown={tagContainerMouseDown}
             className={`w-full md:w-[774px] md:max-w-container flex flex-col items-center font-iranyekan ${
                 userTheme === 'dark' ? 'bg-bg-dark' : 'bg-bg-light'
-            }`}
+            } ${tagsContainerClassName}`}
         >
             <section className={`relative w-full mt-8`}>
                 <label className={`text-sm mb-1 ${userTheme === 'dark' ? 'text-secondary-10' : 'text-zGray-800'}`}>{`${title}`} </label>
