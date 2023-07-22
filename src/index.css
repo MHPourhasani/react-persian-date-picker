@@ -4,17 +4,23 @@
 @font-face {
   font-family: iranyekan;
   font-style: normal;
-  font-weight: 300;
-  src: url("./persianDatePickerReact/assets/fonts/iranyekanweblightfanum.woff")
+  font-weight: normal;
+  src: url("./reactTags/assets/fonts/iranyekanwebregularfanum.woff")
     format("woff");
 }
 
 @font-face {
-  font-family: iranyekan;
-  font-style: normal;
-  font-weight: normal;
-  src: url("./persianDatePickerReact/assets/fonts/iranyekanwebregularfanum.woff")
-    format("woff");
+	font-family: iranyekan;
+	font-style: normal;
+	font-weight: 300;
+	src: url('./reactTags/assets/fonts/iranyekanweblightfanum.woff') format('woff'),
+}
+
+@font-face {
+	font-family: iranyekan;
+	font-style: normal;
+	font-weight: 500;
+	src: url('./reactTags/assets/fonts/iranyekanwebmediumfanum.woff') format('woff'), 
 }
 
 @tailwind utilities;
