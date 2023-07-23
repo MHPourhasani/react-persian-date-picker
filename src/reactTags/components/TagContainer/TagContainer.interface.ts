@@ -10,5 +10,7 @@ export interface TagContainerProps {
     inputClassName?: string;
     dropDownContainerClassName?: string;
     tagsContainerClassName?: string;
+    tagsClassName?: string;
+    selectedTagClassName?: string;
     addToCategoryOnClick?: (a: any) => any;
 }

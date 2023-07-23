@@ -17,7 +17,9 @@ export default function TagContainer({
     inputClassName,
     addToCategoryOnClick,
     dropDownContainerClassName,
-    tagsContainerClassName
+    tagsContainerClassName,
+    tagsClassName,
+    selectedTagClassName,
 }: TagContainerProps) {
     const [userTheme, setUserTheme] = useState<ThemeType>('light');
     const [inputValue, setInputValue] = useState('');
@@ -68,7 +70,9 @@ export default function TagContainer({
                 selectedTags.filter((item: string) => Object.values(item).join('').toLowerCase().includes(inputValue.toLowerCase()))
             ) {
                 // eslint-disable-next-line no-lone-blocks
-                {!!filteredTags.length && setSelectedTags([...selectedTags, filteredTags]);}
+                {
+                    !!filteredTags.length && setSelectedTags([...selectedTags, filteredTags]);
+                }
             } else {
                 if (mode === 'advanced-multi-select') {
                     addToCategoryOnClick?.(e.target.value.trim());
@@ -96,15 +100,14 @@ export default function TagContainer({
     };
 
     const tagContainerMouseDown = (e: any) => {
-        if (document.getElementById('tagContainer')?.contains(e.target)) {
+        if (!document.getElementById('tags')?.contains(e.target) && !document.getElementById('dropdown-container')?.contains(e.target)) {
             setShowDropdown(false);
-            console.log('click');
         }
     };
 
     const tagsMouseDown = (e: any) => {
-        if (document.getElementById('tags')?.contains(e.target) && !document.getElementById('input-container')?.contains(e.target)) {
-            //     setShowDn(false);
+        if (!document.getElementById('input')?.contains(e.target)) {
+            setShowDropdown(false);
         }
     };
 
@@ -123,22 +126,29 @@ export default function TagContainer({
             dir="rtl"
             id="tagsContainer"
             onMouseDown={tagContainerMouseDown}
-            className={`w-full md:w-[774px] md:max-w-container flex flex-col items-center font-iranyekan ${
-                userTheme === 'dark' ? 'bg-bg-dark' : 'bg-bg-light'
-            } ${tagsContainerClassName}`}
+            className={`w-full md:w-[774px] md:max-w-container flex flex-col items-center font-iranyekan ${tagsContainerClassName}`}
         >
-            <section className={`relative w-full mt-8`}>
-                <label className={`text-sm mb-1 ${userTheme === 'dark' ? 'text-secondary-10' : 'text-zGray-800'}`}>{`${title}`} </label>
-                <label className={`text-xs mb-1 ${userTheme === 'dark' ? 'text-secondary-400' : 'text-zGray-800'}`}>{`(حداکثر ${maxTags} مورد)`} </label>
+            <section className={`relative w-full`}>
+                <label className={`text-sm ${userTheme === 'dark' ? 'text-secondary-10' : 'text-zGray-800'}`}>{`${title}`}</label>
+                <label
+                    className={`text-sm mr-1 ${userTheme === 'dark' ? 'text-secondary-400' : 'text-secondary-400'}`}
+                >{`(حداکثر ${maxTags} مورد)`}</label>
 
                 <div
                     id="tags"
                     onMouseDown={tagsMouseDown}
-                    className={`w-full flex flex-wrap items-center gap-4 py-3 px-6 rounded-[0.625rem] border-secondary-100 focus:border ${
-                        theme === 'dark' ? 'bg-zGray-700' : 'bg-zDark-5'
-                    }`}
+                    className={`relative w-full flex flex-wrap items-center gap-4 mt-2 py-3 px-6 rounded-[0.625rem] border-secondary-100 border ${
+                        userTheme === 'dark' ? 'bg-bg-dark' : 'bg-bg-light'
+                    } ${tagsClassName}`}
                 >
-                    <SelectedTagsList theme={userTheme} {...selectedTagsProps} />
+                    {!!selectedTags.length && (
+                        <SelectedTagsList
+                            theme={userTheme}
+                            {...selectedTagsProps}
+                            keyDown={inputKeyDown}
+                            selectedTagClassName={selectedTagClassName}
+                        />
+                    )}
 
                     <Input
                         placeholder={inputPlaceholder}
@@ -165,26 +175,28 @@ export default function TagContainer({
                 </div>
             </section>
 
-            {showDropdown && mode !== 'array-of-string' && !!filteredTags.length && (
-                <Dropdown
-                    {...globalProps}
-                    {...selectedTagsProps}
-                    filteredTags={filteredTags}
-                    dropDownContainerClassName={dropDownContainerClassName}
-                    inputValue={inputValue}
-                    setInputValue={setInputValue}
-                />
-            )}
+            <span id="dropdown-container" className="relative w-full">
+                {showDropdown && mode !== 'array-of-string' && !!filteredTags.length && (
+                    <Dropdown
+                        {...globalProps}
+                        {...selectedTagsProps}
+                        filteredTags={filteredTags}
+                        dropDownContainerClassName={dropDownContainerClassName}
+                        inputValue={inputValue}
+                        setInputValue={setInputValue}
+                    />
+                )}
 
-            {showDropdown && mode === 'advanced-multi-select' && !filteredTags.length && (
-                <EmptyList
-                    {...globalProps}
-                    {...selectedTagsProps}
-                    filteredTags={filteredTags}
-                    inputValue={inputValue}
-                    clickHandler={clickHandler}
-                />
-            )}
+                {showDropdown && mode === 'advanced-multi-select' && !filteredTags.length && (
+                    <EmptyList
+                        {...globalProps}
+                        {...selectedTagsProps}
+                        filteredTags={filteredTags}
+                        inputValue={inputValue}
+                        clickHandler={clickHandler}
+                    />
+                )}
+            </span>
         </section>
     );
 }
