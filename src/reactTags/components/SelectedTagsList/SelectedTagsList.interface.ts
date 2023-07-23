@@ -1,7 +1,9 @@
-import { ThemeType } from "../../interfaces/general";
+import { ThemeType } from '../../interfaces/general';
 
 export interface SelectedTagsListProps {
     theme: ThemeType;
     selectedTags: string[];
     setSelectedTags: any;
+    selectedTagClassName?: string;
+    selectedTagCloseIconClass?: string;
 }
