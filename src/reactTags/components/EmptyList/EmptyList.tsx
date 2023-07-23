@@ -3,7 +3,7 @@ import { EmptyListProps } from './EmptyList.interface';
 
 const EmptyList = ({ theme, filteredTags, clickHandler, inputValue }: EmptyListProps) => {
     return (
-        <div className='w-full'>
+        <div className="absolute w-full bg-white rounded-xl">
             {!filteredTags.length && (
                 <div className={`w-full flex-col flex`}>
                     <button

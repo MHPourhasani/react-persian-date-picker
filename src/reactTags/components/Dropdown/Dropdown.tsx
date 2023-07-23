@@ -4,8 +4,7 @@ import { DropdownProps } from './Dropdown.interface';
 const Dropdown = ({ theme, filteredTags, selectedTags, setSelectedTags, dropDownContainerClassName, setInputValue }: DropdownProps) => {
     return (
         <div
-            id="dropDown"
-            className={`bg-transparent w-full h-auto overflow-y-auto max-h-64 flex flex-col gap-1 p-4 pt-0 mt-[7px] border rounded-b-2xl ${dropDownContainerClassName}`}
+            className={`absolute bg-white w-full h-auto overflow-y-auto max-h-64 flex flex-col gap-1 p-4 pt-0 rounded-xl ${dropDownContainerClassName}`}
         >
             {filteredTags.map((item: any, index: number) => (
                 <span
