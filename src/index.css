@@ -5,7 +5,7 @@
   font-family: iranyekan;
   font-style: normal;
   font-weight: normal;
-  src: url("./reactTags/assets/fonts/iranyekanwebregularfanum.woff")
+  src: url("../assets/fonts/iranyekanwebregularfanum.woff")
     format("woff");
 }
 
@@ -13,14 +13,40 @@
 	font-family: iranyekan;
 	font-style: normal;
 	font-weight: 300;
-	src: url('./reactTags/assets/fonts/iranyekanweblightfanum.woff') format('woff'),
+	src: url('../assets/fonts/iranyekanweblightfanum.woff') format('woff'),
 }
 
 @font-face {
 	font-family: iranyekan;
 	font-style: normal;
 	font-weight: 500;
-	src: url('./reactTags/assets/fonts/iranyekanwebmediumfanum.woff') format('woff'), 
+	src: url('../assets/fonts/iranyekanwebmediumfanum.woff') format('woff'), 
 }
 
 @tailwind utilities;
+
+.custom-scrollbar::-webkit-scrollbar {
+    display: none;
+}
+
+.custom-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #ACB3BF;
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
