@@ -20,6 +20,7 @@ export default function TagContainer({
     tagsContainerClassName,
     tagsClassName,
     selectedTagClassName,
+    selectedTagCloseIconClass,
 }: TagContainerProps) {
     const [userTheme, setUserTheme] = useState<ThemeType>('light');
     const [inputValue, setInputValue] = useState('');
@@ -50,13 +51,9 @@ export default function TagContainer({
 
     useEffect(() => {
         if (maxTags) {
-            setSelectedTags(selectedTags.slice(0, maxTags));
+            setSelectedTags([...new Set(selectedTags)].slice(0, maxTags));
         }
     }, [maxTags, selectedTags]);
-
-    useEffect(() => {
-        setSelectedTags([...new Set(selectedTags)]);
-    }, [selectedTags]);
 
     const inputChangeHandler = (e: any) => {
         let value = e.target.value.trim();
@@ -74,7 +71,7 @@ export default function TagContainer({
                     !!filteredTags.length && setSelectedTags([...selectedTags, filteredTags]);
                 }
             } else {
-                if (mode === 'advanced-multi-select') {
+                if (mode === 'advanced-multi-select' && maxTags && selectedTags.length < maxTags) {
                     addToCategoryOnClick?.(e.target.value.trim());
                     setListOfTags([...listOfTags, e.target.value.trim()]);
                 }
@@ -126,7 +123,7 @@ export default function TagContainer({
             dir="rtl"
             id="tagsContainer"
             onMouseDown={tagContainerMouseDown}
-            className={`w-full md:w-[774px] md:max-w-container flex flex-col items-center font-iranyekan ${tagsContainerClassName}`}
+            className={`w-full flex flex-col items-center font-iranyekan ${tagsContainerClassName}`}
         >
             <section className={`relative w-full`}>
                 <label className={`text-sm ${userTheme === 'dark' ? 'text-secondary-10' : 'text-zGray-800'}`}>{`${title}`}</label>
@@ -137,7 +134,7 @@ export default function TagContainer({
                 <div
                     id="tags"
                     onMouseDown={tagsMouseDown}
-                    className={`relative w-full flex flex-wrap items-center gap-4 mt-2 py-3 px-6 rounded-[0.625rem] border-secondary-100 border ${
+                    className={`relative w-full flex flex-wrap items-center gap-2 mt-2 p-2.5 rounded-[0.625rem] border-secondary-100 border ${
                         userTheme === 'dark' ? 'bg-bg-dark' : 'bg-bg-light'
                     } ${tagsClassName}`}
                 >
@@ -145,8 +142,8 @@ export default function TagContainer({
                         <SelectedTagsList
                             theme={userTheme}
                             {...selectedTagsProps}
-                            keyDown={inputKeyDown}
                             selectedTagClassName={selectedTagClassName}
+                            selectedTagCloseIconClass={selectedTagCloseIconClass}
                         />
                     )}
 
