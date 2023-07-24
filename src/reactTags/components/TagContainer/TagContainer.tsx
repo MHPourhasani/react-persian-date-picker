@@ -1,19 +1,21 @@
 import React, { useEffect, useState } from 'react';
 import { TagContainerProps } from './TagContainer.interface';
 import Input from '../../components/Input/Input';
-import SelectedTagsList from '../SelectedTagsList/SelectedTagsList';
 import Dropdown from '../../components/Dropdown/Dropdown';
 import CloseIcon from '../../assets/icons/closeIcon';
 import { FilteredTagsType, SelectedTagsType, ThemeType } from '../../interfaces/general';
 import EmptyList from '../EmptyList/EmptyList';
+import SelectedTagsList from '../SelectedTagsList/SelectedTagsList';
 
 export default function TagContainer({
     mode,
-    theme,
+    theme = 'light',
     maxTags,
-    tagsList,
-    title,
-    inputPlaceholder,
+    selectedTags,
+    setSelectedTags,
+    categoriesTags,
+    title = 'تگ',
+    inputPlaceholder = 'آیتم‌ها را با Enter از هم جدا کنید.',
     inputClassName,
     addToCategoryOnClick,
     dropDownContainerClassName,
@@ -22,22 +24,15 @@ export default function TagContainer({
     selectedTagClassName,
     selectedTagCloseIconClass,
 }: TagContainerProps) {
-    const [userTheme, setUserTheme] = useState<ThemeType>('light');
+    const [userTheme] = useState<ThemeType>('light');
     const [inputValue, setInputValue] = useState('');
-    const [selectedTags, setSelectedTags] = useState<SelectedTagsType>([]);
     const [filteredTags, setFilteredTags] = useState<FilteredTagsType>([]);
     const [showDropdown, setShowDropdown] = useState(false);
     const [listOfTags, setListOfTags] = useState<any>([]);
 
     useEffect(() => {
-        if (theme) {
-            setUserTheme(theme);
-        }
-    }, [theme]);
-
-    useEffect(() => {
-        setListOfTags(tagsList);
-    }, [tagsList]);
+        setListOfTags(categoriesTags);
+    }, [categoriesTags]);
 
     useEffect(() => {
         if (listOfTags) {
@@ -53,7 +48,7 @@ export default function TagContainer({
         if (maxTags) {
             setSelectedTags([...new Set(selectedTags)].slice(0, maxTags));
         }
-    }, [maxTags, selectedTags]);
+    }, [maxTags, selectedTags, setSelectedTags]);
 
     const inputChangeHandler = (e: any) => {
         let value = e.target.value.trim();
@@ -155,6 +150,7 @@ export default function TagContainer({
                         setShowDropdown={setShowDropdown}
                         theme={theme}
                         inputClassName={inputClassName}
+                        selectedTags={selectedTags}
                     />
 
                     {mode === 'advanced-multi-select' && (

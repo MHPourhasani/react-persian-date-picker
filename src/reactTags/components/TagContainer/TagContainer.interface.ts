@@ -5,7 +5,9 @@ export interface TagContainerProps {
     theme?: ThemeType;
     title: string;
     maxTags?: number;
-    tagsList?: string[];
+    selectedTags: string[];
+    setSelectedTags: any;
+    categoriesTags?: string[];
     inputPlaceholder?: string;
     inputClassName?: string;
     dropDownContainerClassName?: string;
