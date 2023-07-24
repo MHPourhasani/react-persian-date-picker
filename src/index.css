@@ -5,7 +5,7 @@
   font-family: iranyekan;
   font-style: normal;
   font-weight: normal;
-  src: url("../assets/fonts/iranyekanwebregularfanum.woff")
+  src: url("./reactTags/assets/fonts/iranyekanwebregularfanum.woff")
     format("woff");
 }
 
@@ -13,14 +13,14 @@
 	font-family: iranyekan;
 	font-style: normal;
 	font-weight: 300;
-	src: url('../assets/fonts/iranyekanweblightfanum.woff') format('woff'),
+	src: url('./reactTags/assets/fonts/iranyekanweblightfanum.woff') format('woff'),
 }
 
 @font-face {
 	font-family: iranyekan;
 	font-style: normal;
 	font-weight: 500;
-	src: url('../assets/fonts/iranyekanwebmediumfanum.woff') format('woff'), 
+	src: url('./reactTags/assets/fonts/iranyekanwebmediumfanum.woff') format('woff'), 
 }
 
 @tailwind utilities;
