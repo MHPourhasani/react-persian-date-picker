@@ -5,18 +5,23 @@ import TagContainer from "./components/TagContainer/TagContainer";
 
 const ReactTags = (props: TagContainerProps) => {
   return (
-    <TagContainer
-      mode={props.mode}
-      theme={props.theme}
-      maxTags={props.maxTags}
-      tagsList={props.tagsList}
-      title={props.title}
-      inputPlaceholder={props.inputPlaceholder}
-      inputClassName={props.inputClassName}
-      addToCategoryOnClick={props.addToCategoryOnClick}
-      dropDownContainerClassName={props.dropDownContainerClassName}
-      tagsContainerClassName={props.tagsContainerClassName}
-    />
+      <TagContainer
+          mode={props.mode}
+          theme={props.theme}
+          title={props.title}
+          maxTags={props.maxTags}
+          selectedTags={props.selectedTags}
+          setSelectedTags={props.setSelectedTags}
+          categoriesTags={props.categoriesTags}
+          tagsContainerClassName={props.tagsContainerClassName}
+          tagsClassName={props.tagsClassName}
+          inputPlaceholder={props.inputPlaceholder}
+          inputClassName={props.inputClassName}
+          dropDownContainerClassName={props.dropDownContainerClassName}
+          selectedTagClassName={props.selectedTagClassName}
+          selectedTagCloseIconClass={props.selectedTagCloseIconClass}
+          addToCategoryOnClick={props.addToCategoryOnClick}
+      />
   );
 };
 
