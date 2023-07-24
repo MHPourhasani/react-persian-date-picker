@@ -1,4 +1,4 @@
-import { ThemeType } from "../../interfaces/general";
+import { ThemeType } from '../../interfaces/general';
 
 export interface InputProps {
     label?: string;
@@ -6,7 +6,8 @@ export interface InputProps {
     value?: string;
     changeHandler?: (e: any) => void;
     keyDown?: (e: any) => void;
-    setShowDropdown?: (a: boolean) => void;
+    setShowDropdown?: any;
     theme?: ThemeType;
     inputClassName?: string;
+    selectedTags: string[];
 }

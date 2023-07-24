@@ -9,11 +9,10 @@ const Input = ({ theme, placeholder, setShowDropdown, value, changeHandler, keyD
             dir="rtl"
             placeholder={placeholder}
             value={value}
-            autoFocus
             onChange={changeHandler}
             onKeyDown={keyDown}
             onFocus={() => setShowDropdown(true)}
-            className={`w-60 py-1 px-4 rounded-[10px] outline-none placeholder:text-right bg-transparent placeholder:text-sm placeholder:text-secondary-400 ${
+            className={`w-60 py-1 px-4 rounded-[10px] outline-none !text-right placeholder:text-right bg-transparent placeholder:text-sm placeholder:text-secondary-400 ${
                 selectedTags.length ? 'placeholder:opacity-0' : 'placeholder:opacity-100'
             } focus:placeholder:opacity-100 transition-all ease-in-out ${theme === 'dark' ? 'text-white' : 'text-zGray-800'} ${inputClassName}`}
         />
