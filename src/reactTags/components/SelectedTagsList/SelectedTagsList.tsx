@@ -1,16 +1,22 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import CloseIcon from '../../assets/icons/closeIcon';
 import { SelectedTagsListProps } from './SelectedTagsList.interface';
 
-const SelectedTagsList = ({ theme, selectedTags, setSelectedTags, selectedTagClassName, selectedTagCloseIconClass }: SelectedTagsListProps) => {
+const SelectedTagsList = ({ theme, mode, selectedTags, setSelectedTags, selectedTagClassName, selectedTagCloseIconClass }: SelectedTagsListProps) => {
     const [contentEditable, setContentEditable] = useState(false);
 
     const keyDown = (e: any) => {
-        setContentEditable(true);
+        if (mode === 'array-of-string') {
+            setContentEditable(true);
 
-        if (e.key === 'Enter') {
-            setContentEditable(false);
+            if (e.key === 'Enter') {
+                setContentEditable(false);
+            }
         }
+    };
+
+    const clickHandler = () => {
+        if (mode === 'array-of-string') setContentEditable(true);
     };
 
     return (
@@ -19,7 +25,7 @@ const SelectedTagsList = ({ theme, selectedTags, setSelectedTags, selectedTagCla
                 selectedTags.map((tag: string) => (
                     <span
                         key={tag}
-                        onClick={() => setContentEditable(true)}
+                        onClick={clickHandler}
                         onChange={(e) => console.log(e)}
                         onKeyDown={keyDown}
                         className={`w-fit py-1.5 px-2 rounded-[4px] flex items-center gap-2.5 text-[13px] cursor-default focus:border-2 focus:border-secondary-400 hover:scale-105 ${
