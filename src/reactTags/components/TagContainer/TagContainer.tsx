@@ -3,7 +3,7 @@ import { TagContainerProps } from './TagContainer.interface';
 import Input from '../../components/Input/Input';
 import Dropdown from '../../components/Dropdown/Dropdown';
 import CloseIcon from '../../assets/icons/closeIcon';
-import { FilteredTagsType, SelectedTagsType, ThemeType } from '../../interfaces/general';
+import { FilteredTagsType, ThemeType } from '../../interfaces/general';
 import EmptyList from '../EmptyList/EmptyList';
 import SelectedTagsList from '../SelectedTagsList/SelectedTagsList';
 
@@ -44,12 +44,6 @@ export default function TagContainer({
         }
     }, [inputValue, listOfTags]);
 
-    useEffect(() => {
-        if (maxTags) {
-            setSelectedTags([...new Set(selectedTags)].slice(0, maxTags));
-        }
-    }, [maxTags, selectedTags, setSelectedTags]);
-
     const inputChangeHandler = (e: any) => {
         let value = e.target.value.trim();
         setInputValue(value);
@@ -71,7 +65,7 @@ export default function TagContainer({
                     setListOfTags([...listOfTags, e.target.value.trim()]);
                 }
 
-                setSelectedTags([...selectedTags, e.target.value.trim()]);
+                setSelectedTags([...selectedTags, e.target.value.trim()].slice(0, maxTags));
             }
             setInputValue('');
         }
@@ -137,6 +131,7 @@ export default function TagContainer({
                         <SelectedTagsList
                             {...globalProps}
                             {...selectedTagsProps}
+                            maxTags={maxTags}
                             selectedTagClassName={selectedTagClassName}
                             selectedTagCloseIconClass={selectedTagCloseIconClass}
                         />
@@ -173,6 +168,7 @@ export default function TagContainer({
                     <Dropdown
                         {...globalProps}
                         {...selectedTagsProps}
+                        maxTags={maxTags}
                         filteredTags={filteredTags}
                         dropDownContainerClassName={dropDownContainerClassName}
                         inputValue={inputValue}
@@ -181,13 +177,7 @@ export default function TagContainer({
                 )}
 
                 {showDropdown && mode === 'advanced-multi-select' && !filteredTags.length && (
-                    <EmptyList
-                        {...globalProps}
-                        {...selectedTagsProps}
-                        filteredTags={filteredTags}
-                        inputValue={inputValue}
-                        clickHandler={clickHandler}
-                    />
+                    <EmptyList {...globalProps} filteredTags={filteredTags} inputValue={inputValue} clickHandler={clickHandler} />
                 )}
             </span>
         </section>
