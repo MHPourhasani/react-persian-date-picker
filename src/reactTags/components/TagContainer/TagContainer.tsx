@@ -55,9 +55,10 @@ export default function TagContainer({
                 mode === 'multi-select' &&
                 selectedTags.filter((item: string) => Object.values(item).join('').toLowerCase().includes(inputValue.toLowerCase()))
             ) {
-                // eslint-disable-next-line no-lone-blocks
-                {
-                    !!filteredTags.length && setSelectedTags([...selectedTags, filteredTags]);
+                const matchValue = filteredTags.filter((tag: string) => tag.toLowerCase() === e.target.value);
+
+                if (!!matchValue.length && !!filteredTags.length && filteredTags.map((i) => i.toLowerCase().includes(e.target.value))) {
+                    setSelectedTags([...selectedTags, matchValue].slice(0, maxTags));
                 }
             } else {
                 if (mode === 'advanced-multi-select' && maxTags && selectedTags.length < maxTags) {

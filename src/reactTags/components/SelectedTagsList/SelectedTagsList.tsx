@@ -41,7 +41,7 @@ const SelectedTagsList = ({
                         } ${selectedTagClassName}`}
                     >
                         <p dir="auto" contentEditable={contentEditable} className="text-[13px] outline-none">
-                            {tag.trim() ? tag.trim() : selectedTags.filter((i) => i !== tag)}
+                            {tag ? tag : selectedTags.filter((i) => i !== tag)}
                         </p>
 
                         <CloseIcon
