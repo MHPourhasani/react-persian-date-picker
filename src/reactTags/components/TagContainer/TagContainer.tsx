@@ -56,7 +56,7 @@ export default function TagContainer({
                 mode === 'multi-select' &&
                 selectedTags.filter((item: string) => Object.values(item).join('').toLowerCase().includes(e.target.value.toLowerCase()))
             ) {
-                if (filteredTags[e.target.value]) {
+                if (filteredTags.find((i) => i === e.target.value)) {
                     setSelectedTags([...new Set([...selectedTags, e.target.value.trim()].slice(0, maxTags))]);
                 }
             } else {
