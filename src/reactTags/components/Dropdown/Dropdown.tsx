@@ -24,7 +24,9 @@ const Dropdown = ({
                     }}
                     className={`cursor-pointer rounded-lg py-2 px-4 ${
                         theme === 'dark' ? 'text-white hover:bg-zGray-700' : 'text-zGray-800 hover:bg-secondary-300'
-                    } ${filteredTags.indexOf(item) === activeIndex && 'bg-secondary-300'}`}
+                    } ${filteredTags.indexOf(item) === activeIndex && 'bg-secondary-300'} ${
+                        filteredTags.indexOf(item) === selectedTags.indexOf(item) && 'text-secondary-300'
+                    }`}
                 >
                     {item}
                 </span>
