@@ -10,5 +10,5 @@ export interface DropdownProps {
     dropDownContainerClassName?: string;
     inputValue: string;
     setInputValue: any;
-    activeIndex?: number;
+    activeIndex?: number | null;
 }
