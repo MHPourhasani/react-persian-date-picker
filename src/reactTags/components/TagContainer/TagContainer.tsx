@@ -27,9 +27,9 @@ export default function TagContainer({
     const [userTheme] = useState<ThemeType>('light');
     const [inputValue, setInputValue] = useState('');
     const [filteredTags, setFilteredTags] = useState<FilteredTagsType>([]);
-    const [isHoverFilterTag, setIsHoverFilterTag] = useState(null);
     const [showDropdown, setShowDropdown] = useState(false);
     const [listOfTags, setListOfTags] = useState<any>([]);
+    const [activeIndex, setActiveIndex] = useState<number | null>(null);
 
     useEffect(() => {
         setListOfTags(categoriesTags);
@@ -72,6 +72,26 @@ export default function TagContainer({
             tags.pop();
             setSelectedTags(tags);
         }
+
+        if (e.key === 'ArrowDown') {
+            if (activeIndex === null) {
+                setActiveIndex(0);
+            } else if (activeIndex === filteredTags.length - 1) {
+                setActiveIndex(0);
+            } else {
+                setActiveIndex(activeIndex + 1);
+            }
+        }
+
+        if (e.key === 'ArrowUp') {
+            if (activeIndex === null) {
+                setActiveIndex(0);
+            } else if (activeIndex === 0) {
+                setActiveIndex(filteredTags.length - 1);
+            } else {
+                setActiveIndex(activeIndex - 1);
+            }
+        }
     };
 
     const clickHandler = () => {
@@ -94,14 +114,6 @@ export default function TagContainer({
         }
     };
 
-    const dropDownKeydown = (e: any) => {
-        console.log(e.key);
-        if (e.key === 'ArrowDown') {
-            // filteredTags.forEach(i => {
-            // })
-        }
-    };
-
     const selectedTagsProps = {
         selectedTags: selectedTags,
         setSelectedTags: setSelectedTags,
@@ -117,7 +129,7 @@ export default function TagContainer({
             dir="rtl"
             id="tagsContainer"
             onMouseDown={tagContainerMouseDown}
-            onKeyDown={dropDownKeydown}
+            // onKeyDown={dropDownKeydown}
             className={`w-full flex flex-col items-center font-iranyekan ${tagsContainerClassName}`}
         >
             <section className={`relative w-full`}>
@@ -179,6 +191,7 @@ export default function TagContainer({
                         dropDownContainerClassName={dropDownContainerClassName}
                         inputValue={inputValue}
                         setInputValue={setInputValue}
+                        activeIndex={activeIndex}
                     />
                 )}
 
