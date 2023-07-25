@@ -100,7 +100,7 @@ export default function TagContainer({
 
         if (e.key === 'ArrowUp') {
             if (activeIndex === null) {
-                setActiveIndex(0);
+                setActiveIndex(filteredTags.length - 1);
             } else if (activeIndex === 0) {
                 setActiveIndex(filteredTags.length - 1);
             } else {
