@@ -74,6 +74,8 @@ export default function TagContainer({
         if (e.key === 'Enter') {
             if (activeIndex !== null) {
                 setSelectedTags([...new Set([...selectedTags, filteredTags[activeIndex]].slice(0, maxTags))]);
+                setInputValue('');
+                setActiveIndex(null);
             }
         }
 
