@@ -1,7 +1,16 @@
 import React from 'react';
 import { DropdownProps } from './Dropdown.interface';
 
-const Dropdown = ({ theme, filteredTags, maxTags, selectedTags, setSelectedTags, dropDownContainerClassName, setInputValue }: DropdownProps) => {
+const Dropdown = ({
+    theme,
+    filteredTags,
+    maxTags,
+    selectedTags,
+    setSelectedTags,
+    dropDownContainerClassName,
+    setInputValue,
+    activeIndex,
+}: DropdownProps) => {
     return (
         <div
             className={`absolute bg-white w-full h-auto overflow-y-auto max-h-64 flex flex-col gap-1 pt-0 border rounded-xl custom-scrollbar ${dropDownContainerClassName}`}
@@ -10,12 +19,12 @@ const Dropdown = ({ theme, filteredTags, maxTags, selectedTags, setSelectedTags,
                 <span
                     key={index}
                     onClick={() => {
-                        setSelectedTags([...selectedTags, item].slice(0, maxTags));
+                        setSelectedTags([...new Set([...selectedTags, item].slice(0, maxTags))]);
                         setInputValue('');
                     }}
                     className={`cursor-pointer rounded-lg py-2 px-4 ${
                         theme === 'dark' ? 'text-white hover:bg-zGray-700' : 'text-zGray-800 hover:bg-zDark-12'
-                    }`}
+                    } ${filteredTags.indexOf(item) === activeIndex && 'bg-sky-600'}`}
                 >
                     {item}
                 </span>

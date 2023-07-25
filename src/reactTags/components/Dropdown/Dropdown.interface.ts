@@ -9,5 +9,6 @@ export interface DropdownProps {
     setSelectedTags: any;
     dropDownContainerClassName?: string;
     inputValue: string;
-    setInputValue?: any;
+    setInputValue: any;
+    activeIndex?: number;
 }
