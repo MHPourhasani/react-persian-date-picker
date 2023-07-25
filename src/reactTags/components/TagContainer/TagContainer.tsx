@@ -56,6 +56,9 @@ export default function TagContainer({
                 mode === 'multi-select' &&
                 selectedTags.filter((item: string) => Object.values(item).join('').toLowerCase().includes(e.target.value.toLowerCase()))
             ) {
+                if (filteredTags[e.target.value]) {
+                    setSelectedTags([...new Set([...selectedTags, e.target.value.trim()].slice(0, maxTags))]);
+                }
             } else {
                 if (mode === 'advanced-multi-select' && maxTags && selectedTags.length < maxTags) {
                     addToCategoryOnClick?.(e.target.value.trim());
@@ -64,7 +67,14 @@ export default function TagContainer({
 
                 setSelectedTags([...new Set([...selectedTags, e.target.value.trim()].slice(0, maxTags))]);
             }
+
             setInputValue('');
+        }
+
+        if (e.key === 'Enter') {
+            if (activeIndex !== null) {
+                setSelectedTags([...new Set([...selectedTags, filteredTags[activeIndex]].slice(0, maxTags))]);
+            }
         }
 
         if (e.key === 'Backspace') {
@@ -138,7 +148,6 @@ export default function TagContainer({
             dir="rtl"
             id="tagsContainer"
             onMouseDown={tagContainerMouseDown}
-            // onKeyDown={dropDownKeydown}
             className={`w-full flex flex-col items-center font-iranyekan ${tagsContainerClassName}`}
         >
             <section className={`relative w-full`}>
