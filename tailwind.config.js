@@ -1,9 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-    content: [
-    "./src/reactTags/components/**/*.{js,ts,jsx,tsx}",
-    "./src/reactTags/assets/icons/**/*.{js,ts,jsx,tsx}",
-  ],
+    content: ['./src/reactTags/components/**/*.{js,ts,jsx,tsx}', './src/reactTags/assets/icons/**/*.{js,ts,jsx,tsx}'],
     theme: {
         extend: {
             fontFamily: {
@@ -17,6 +14,7 @@ module.exports = {
                 secondary: {
                     10: '#EFF0F6',
                     100: '#DBDDDE',
+                    300: '#D9DBE9',
                     400: '#A0A3BD',
                 },
                 zGray: {
