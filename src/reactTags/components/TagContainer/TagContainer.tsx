@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { TagContainerProps } from './TagContainer.interface';
-import Input from '../../components/Input/Input';
-import Dropdown from '../../components/Dropdown/Dropdown';
-import CloseIcon from '../../assets/icons/closeIcon';
 import { FilteredTagsType, ThemeType } from '../../interfaces/general';
-import EmptyList from '../EmptyList/EmptyList';
 import SelectedTagsList from '../SelectedTagsList/SelectedTagsList';
+import Input from '../Input/Input';
+import Dropdown from '../Dropdown/Dropdown';
+import EmptyList from '../EmptyList/EmptyList';
+import CloseIcon from '../../assets/icons/closeIcon';
 
 export default function TagContainer({
     mode,
@@ -27,6 +27,7 @@ export default function TagContainer({
     const [userTheme] = useState<ThemeType>('light');
     const [inputValue, setInputValue] = useState('');
     const [filteredTags, setFilteredTags] = useState<FilteredTagsType>([]);
+    const [isHoverFilterTag, setIsHoverFilterTag] = useState(null);
     const [showDropdown, setShowDropdown] = useState(false);
     const [listOfTags, setListOfTags] = useState<any>([]);
 
@@ -53,20 +54,15 @@ export default function TagContainer({
         if (e.key === 'Enter' && inputValue) {
             if (
                 mode === 'multi-select' &&
-                selectedTags.filter((item: string) => Object.values(item).join('').toLowerCase().includes(inputValue.toLowerCase()))
+                selectedTags.filter((item: string) => Object.values(item).join('').toLowerCase().includes(e.target.value.toLowerCase()))
             ) {
-                const matchValue = filteredTags.filter((tag: string) => tag.toLowerCase() === e.target.value);
-
-                if (!!matchValue.length && !!filteredTags.length && filteredTags.map((i) => i.toLowerCase().includes(e.target.value))) {
-                    setSelectedTags([...selectedTags, matchValue].slice(0, maxTags));
-                }
             } else {
                 if (mode === 'advanced-multi-select' && maxTags && selectedTags.length < maxTags) {
                     addToCategoryOnClick?.(e.target.value.trim());
                     setListOfTags([...listOfTags, e.target.value.trim()]);
                 }
 
-                setSelectedTags([...selectedTags, e.target.value.trim()].slice(0, maxTags));
+                setSelectedTags([...new Set([...selectedTags, e.target.value.trim()].slice(0, maxTags))]);
             }
             setInputValue('');
         }
@@ -80,7 +76,7 @@ export default function TagContainer({
 
     const clickHandler = () => {
         if (inputValue.trim()) {
-            setSelectedTags([...selectedTags, inputValue]);
+            setSelectedTags([...new Set([...selectedTags, inputValue].slice(0, maxTags))]);
             setListOfTags([...listOfTags, inputValue]);
         }
         setInputValue('');
@@ -95,6 +91,14 @@ export default function TagContainer({
     const tagsMouseDown = (e: any) => {
         if (!document.getElementById('input')?.contains(e.target)) {
             setShowDropdown(false);
+        }
+    };
+
+    const dropDownKeydown = (e: any) => {
+        console.log(e.key);
+        if (e.key === 'ArrowDown') {
+            // filteredTags.forEach(i => {
+            // })
         }
     };
 
@@ -113,6 +117,7 @@ export default function TagContainer({
             dir="rtl"
             id="tagsContainer"
             onMouseDown={tagContainerMouseDown}
+            onKeyDown={dropDownKeydown}
             className={`w-full flex flex-col items-center font-iranyekan ${tagsContainerClassName}`}
         >
             <section className={`relative w-full`}>
