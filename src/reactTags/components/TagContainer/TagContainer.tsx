@@ -51,7 +51,7 @@ export default function TagContainer({
     };
 
     const inputKeyDown = (e: any) => {
-        if (e.key === 'Enter' && inputValue) {
+        if (e.key === 'Enter' && inputValue && activeIndex === null) {
             if (
                 mode === 'multi-select' &&
                 selectedTags.filter((item: string) => Object.values(item).join('').toLowerCase().includes(e.target.value.toLowerCase()))
@@ -67,10 +67,13 @@ export default function TagContainer({
             setInputValue('');
         }
 
-        if (e.key === 'Backspace' && !inputValue) {
-            const tags = [...selectedTags];
-            tags.pop();
-            setSelectedTags(tags);
+        if (e.key === 'Backspace') {
+            if (!inputValue) {
+                const tags = [...selectedTags];
+                tags.pop();
+                setSelectedTags(tags);
+            }
+            setActiveIndex(null);
         }
 
         if (e.key === 'ArrowDown') {
@@ -113,6 +116,12 @@ export default function TagContainer({
             setShowDropdown(false);
         }
     };
+
+    useEffect(() => {
+        if (!showDropdown) {
+            setActiveIndex(null);
+        }
+    }, [showDropdown]);
 
     const selectedTagsProps = {
         selectedTags: selectedTags,
