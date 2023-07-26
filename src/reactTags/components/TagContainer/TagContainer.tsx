@@ -117,12 +117,6 @@ export default function TagContainer({
         setInputValue('');
     };
 
-    const tagContainerMouseDown = (e: any) => {
-        if (!document.getElementById('tags')?.contains(e.target) && !document.getElementById('dropdown-container')?.contains(e.target)) {
-            setShowDropdown(false);
-        }
-    };
-
     const tagsMouseDown = (e: any) => {
         if (!document.getElementById('input')?.contains(e.target)) {
             setShowDropdown(false);
@@ -146,12 +140,7 @@ export default function TagContainer({
     };
 
     return (
-        <section
-            dir="rtl"
-            id="tagsContainer"
-            onMouseDown={tagContainerMouseDown}
-            className={`w-full flex flex-col items-center font-iranyekan ${tagsContainerClassName}`}
-        >
+        <section dir="rtl" id="tagsContainer" className={`w-full flex flex-col items-center font-iranyekan ${tagsContainerClassName}`}>
             <section className={`relative w-full`}>
                 <label className={`text-sm ${userTheme === 'dark' ? 'text-zSecondary-10' : 'text-zGray-800'}`}>{`${title}`}</label>
                 <label
@@ -201,7 +190,7 @@ export default function TagContainer({
                 </div>
             </section>
 
-            <span id="dropdown-container" className="relative w-full">
+            <span id="dropdown-container" className="relative w-full z-50">
                 {showDropdown && mode === 'advanced-multi-select' && !filteredTags.length && !filteredTags.find((item) => item === inputValue) && (
                     <div className="absolute w-full">
                         <EmptyList {...globalProps} inputValue={inputValue} clickHandler={clickHandler} />
@@ -220,6 +209,7 @@ export default function TagContainer({
                             setInputValue={setInputValue}
                             clickHandler={clickHandler}
                             activeIndex={activeIndex}
+                            setShowDropdown={setShowDropdown}
                         />
                     </div>
                 )}
