@@ -11,12 +11,10 @@ const SelectedTagsList = ({
     selectedTagClassName,
     selectedTagCloseIconClass,
 }: SelectedTagsListProps) => {
-    const [contentEditable, setContentEditable] = useState(false);
+    const [contentEditable, setContentEditable] = useState(true);
 
     const keyDown = (e: any) => {
         if (mode === 'array-of-string') {
-            setContentEditable(true);
-
             if (e.key === 'Enter') {
                 setContentEditable(false);
             }
@@ -30,9 +28,9 @@ const SelectedTagsList = ({
     return (
         <div className="w-fit flex flex-wrap gap-2">
             {selectedTags &&
-                selectedTags.map((tag: string, index: number) => (
+                selectedTags.map((tag: string) => (
                     <span
-                        key={index}
+                        key={tag}
                         onClick={clickHandler}
                         onInput={(e) => console.log(e)}
                         onKeyDown={keyDown}
