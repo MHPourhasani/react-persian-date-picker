@@ -1,23 +1,31 @@
 import React from 'react';
 import { DropdownProps } from './Dropdown.interface';
+import EmptyList from '../EmptyList/EmptyList';
 
 const Dropdown = ({
     theme,
+    mode,
     filteredTags,
     maxTags,
     selectedTags,
     setSelectedTags,
     dropDownContainerClassName,
+    inputValue,
     setInputValue,
+    clickHandler,
     activeIndex,
 }: DropdownProps) => {
     return (
         <div
-            className={`absolute bg-white w-full h-auto overflow-y-auto max-h-64 flex flex-col gap-1 pt-0 border rounded-xl custom-scrollbar ${dropDownContainerClassName}`}
+            className={`bg-white w-full h-auto overflow-y-auto max-h-64 flex flex-col gap-1 pt-0 border rounded-xl custom-scrollbar ${dropDownContainerClassName}`}
         >
-            {filteredTags.map((item: any, index: number) => (
+            {filteredTags && inputValue.trim() && !filteredTags.find((tag: string) => tag === inputValue) && (
+                <EmptyList inputValue={inputValue} clickHandler={clickHandler} theme={theme} mode={mode} />
+            )}
+
+            {filteredTags.map((item: string) => (
                 <span
-                    key={index}
+                    key={item}
                     onClick={() => {
                         setSelectedTags([...new Set([...selectedTags, item].slice(0, maxTags))]);
                         setInputValue('');

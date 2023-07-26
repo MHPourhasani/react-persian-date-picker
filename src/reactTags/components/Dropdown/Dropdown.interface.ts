@@ -11,4 +11,5 @@ export interface DropdownProps {
     inputValue: string;
     setInputValue: any;
     activeIndex?: number | null;
+    clickHandler: () => void;
 }
