@@ -19,7 +19,7 @@ const Dropdown = ({
         <div
             className={`bg-white w-full h-auto overflow-y-auto max-h-64 flex flex-col gap-1 pt-0 border rounded-xl custom-scrollbar ${dropDownContainerClassName}`}
         >
-            {filteredTags && inputValue.trim() && !filteredTags.find((tag: string) => tag === inputValue) && (
+            {mode === 'advanced-multi-select' && filteredTags && inputValue.trim() && !filteredTags.find((tag: string) => tag === inputValue) && (
                 <EmptyList inputValue={inputValue} clickHandler={clickHandler} theme={theme} mode={mode} />
             )}
 
@@ -31,9 +31,9 @@ const Dropdown = ({
                         setInputValue('');
                     }}
                     className={`cursor-pointer rounded-lg py-2 px-4 ${
-                        theme === 'dark' ? 'text-white hover:bg-zGray-700' : 'text-zGray-800 hover:bg-secondary-300'
-                    } ${filteredTags.indexOf(item) === activeIndex && 'bg-secondary-300'} ${
-                        filteredTags.find((tag: string) => tag === selectedTags[selectedTags.indexOf(item)]) && 'text-zGray-300 cursor-text'
+                        theme === 'dark' ? 'text-white hover:bg-zGray-700' : 'text-zGray-800 hover:bg-zSecondary-300'
+                    } ${filteredTags.indexOf(item) === activeIndex && 'bg-zSecondary-300'} ${
+                        filteredTags.find((tag: string) => tag === selectedTags[selectedTags.indexOf(item)]) && 'text-zSecondary-400 cursor-text'
                     }`}
                 >
                     {item}
