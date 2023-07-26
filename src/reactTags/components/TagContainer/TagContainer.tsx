@@ -202,21 +202,26 @@ export default function TagContainer({
             </section>
 
             <span id="dropdown-container" className="relative w-full">
-                {showDropdown && mode !== 'array-of-string' && !!filteredTags.length && (
-                    <Dropdown
-                        {...globalProps}
-                        {...selectedTagsProps}
-                        maxTags={maxTags}
-                        filteredTags={filteredTags}
-                        dropDownContainerClassName={dropDownContainerClassName}
-                        inputValue={inputValue}
-                        setInputValue={setInputValue}
-                        activeIndex={activeIndex}
-                    />
+                {showDropdown && mode === 'advanced-multi-select' && !filteredTags.length && !filteredTags.find((item) => item === inputValue) && (
+                    <div className="absolute w-full">
+                        <EmptyList {...globalProps} inputValue={inputValue} clickHandler={clickHandler} />
+                    </div>
                 )}
 
-                {showDropdown && mode === 'advanced-multi-select' && !filteredTags.length && (
-                    <EmptyList {...globalProps} filteredTags={filteredTags} inputValue={inputValue} clickHandler={clickHandler} />
+                {showDropdown && mode !== 'array-of-string' && !!filteredTags.length && (
+                    <div className="absolute w-full">
+                        <Dropdown
+                            {...globalProps}
+                            {...selectedTagsProps}
+                            maxTags={maxTags}
+                            filteredTags={filteredTags}
+                            dropDownContainerClassName={dropDownContainerClassName}
+                            inputValue={inputValue}
+                            setInputValue={setInputValue}
+                            clickHandler={clickHandler}
+                            activeIndex={activeIndex}
+                        />
+                    </div>
                 )}
             </span>
         </section>
