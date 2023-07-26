@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import CloseIcon from '../../assets/icons/closeIcon';
 import { SelectedTagsListProps } from './SelectedTagsList.interface';
 
@@ -11,10 +11,11 @@ const SelectedTagsList = ({
     selectedTagClassName,
     selectedTagCloseIconClass,
 }: SelectedTagsListProps) => {
-    const [contentEditable, setContentEditable] = useState(true);
+    const [contentEditable, setContentEditable] = useState(false);
 
     const keyDown = (e: any) => {
         if (mode === 'array-of-string') {
+            setContentEditable(true);
             if (e.key === 'Enter') {
                 setContentEditable(false);
             }
