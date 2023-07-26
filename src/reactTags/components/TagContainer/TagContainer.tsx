@@ -153,15 +153,15 @@ export default function TagContainer({
             className={`w-full flex flex-col items-center font-iranyekan ${tagsContainerClassName}`}
         >
             <section className={`relative w-full`}>
-                <label className={`text-sm ${userTheme === 'dark' ? 'text-secondary-10' : 'text-zGray-800'}`}>{`${title}`}</label>
+                <label className={`text-sm ${userTheme === 'dark' ? 'text-zSecondary-10' : 'text-zGray-800'}`}>{`${title}`}</label>
                 <label
-                    className={`text-sm mr-1 ${userTheme === 'dark' ? 'text-secondary-400' : 'text-secondary-400'}`}
+                    className={`text-sm mr-1 ${userTheme === 'dark' ? 'text-zSecondary-400' : 'text-zSecondary-400'}`}
                 >{`(حداکثر ${maxTags} مورد)`}</label>
 
                 <div
                     id="tags"
                     onMouseDown={tagsMouseDown}
-                    className={`relative w-full h-14 flex flex-wrap items-center gap-2 mt-2 px-2.5 rounded-[0.625rem] border-secondary-100 border ${
+                    className={`relative w-full h-14 flex flex-wrap items-center gap-2 mt-2 px-2.5 rounded-[0.625rem] border-zSecondary-100 border ${
                         userTheme === 'dark' ? 'bg-bg-dark' : 'bg-bg-light'
                     } ${tagsClassName}`}
                 >

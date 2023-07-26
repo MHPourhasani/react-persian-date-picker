@@ -36,7 +36,7 @@ const SelectedTagsList = ({
                         onClick={clickHandler}
                         onInput={(e) => console.log(e)}
                         onKeyDown={keyDown}
-                        className={`w-fit py-1.5 px-2 rounded-[4px] flex items-center gap-2.5 text-[13px] cursor-default focus:border-2 focus:border-secondary-400 hover:scale-105 ${
+                        className={`w-fit py-1.5 px-2 rounded-[4px] flex items-center gap-2.5 text-[13px] cursor-default focus:border-2 focus:border-zSecondary-400 hover:scale-105 ${
                             theme === 'dark' ? 'bg-zDark-5' : 'bg-zGray-300'
                         } ${selectedTagClassName}`}
                     >
