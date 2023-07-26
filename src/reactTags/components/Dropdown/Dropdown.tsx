@@ -1,6 +1,7 @@
 import React from 'react';
 import { DropdownProps } from './Dropdown.interface';
 import EmptyList from '../EmptyList/EmptyList';
+import { useOutsideClick } from '../../hooks/useOutsideClick';
 
 const Dropdown = ({
     theme,
@@ -14,9 +15,23 @@ const Dropdown = ({
     setInputValue,
     clickHandler,
     activeIndex,
+    setShowDropdown,
 }: DropdownProps) => {
+    const handleClickOutside = () => {
+        setShowDropdown(false);
+    };
+
+    const ref: any = useOutsideClick(handleClickOutside);
+
+    const dropDownOnClick = (e: any) => {
+        e.stopPropagation();
+    };
+
     return (
         <div
+            id="dropDown"
+            ref={ref}
+            onClick={dropDownOnClick}
             className={`bg-white w-full h-auto overflow-y-auto max-h-64 flex flex-col gap-1 pt-0 border rounded-xl custom-scrollbar ${dropDownContainerClassName}`}
         >
             {mode === 'advanced-multi-select' && filteredTags && inputValue.trim() && !filteredTags.find((tag: string) => tag === inputValue) && (
