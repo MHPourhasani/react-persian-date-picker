@@ -8,19 +8,14 @@ const EmptyList = ({ theme, filteredTags, clickHandler, inputValue }: EmptyListP
                 <div className={`w-full flex-col flex`}>
                     <button
                         onClick={clickHandler}
-                        className={`cursor-pointer rounded-lg px-2 py-[7px] ${
+                        className={`flex gap-2 cursor-pointer rounded-lg px-2 py-[7px] ${
                             theme === 'dark' ? 'text-white hover:bg-zGray-700' : 'text-zGray-800 hover:bg-zDark-12'
                         }`}
                     >
-                        افزودن به دسته بندی ها
+                        <span>افزودن</span>
+                        <span>"{inputValue}"</span>
+                        <span>به دسته بندی ها</span>
                     </button>
-                    <span
-                        className={`cursor-pointer rounded-lg px-2 py-[7px] ${
-                            theme === 'dark' ? 'text-white hover:bg-zGray-700' : 'text-zGray-800 hover:bg-zDark-12'
-                        }`}
-                    >
-                        {inputValue}
-                    </span>
                 </div>
             )}
         </div>
