@@ -1,7 +1,4 @@
-import {
-  DatePickerContainer,
-  MobileDatePickerContainer,
-} from "./persianDatePickerReact";
+import ReactTags from "./reactTags/main";
 
-export { DatePickerContainer, MobileDatePickerContainer };
+export default ReactTags;
 
